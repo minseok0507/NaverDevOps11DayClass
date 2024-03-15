@@ -13,7 +13,15 @@ public class Ex1_DateType {
 
         System.out.println(flag);
         System.out.println(flag2);
-        System.out.println(!flag);
+        System.out.println(!flag); //!(not) 반대로 출력, true > false, false > true
         System.out.println(!flag2);
+
+        //&& = and 둘다 true일떄 true
+        //|| = or 둘 중 하나만 ture라도 true
+
+        System.out.println(flag && flag2);
+        System.out.println(flag || flag2);
+
+
     }
 }
