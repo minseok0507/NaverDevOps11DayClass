@@ -25,6 +25,5 @@ public class Ex13_ForPrac {
         System.out.printf("%d 의 %d 승은 %d", x, y, iMul);
 
 
-
     }
 }
