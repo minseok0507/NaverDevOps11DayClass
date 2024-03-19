@@ -12,11 +12,11 @@ public class Ex11_PracticeString {
         msg = sc.nextLine();
 
         for (int i = 0; i < msg.length(); i++) {
-            if (msg.charAt(i) >= 'A' && msg.charAt(i) <= 'Z'){
+            if (msg.charAt(i) >= 'A' && msg.charAt(i) <= 'Z') {
                 big++;
-            } else if (msg.charAt(i) >= 'a' && msg.charAt(i) <= 'z'){
+            } else if (msg.charAt(i) >= 'a' && msg.charAt(i) <= 'z') {
                 small++;
-            } else if (msg.charAt(i) >= '0' && msg.charAt(i) <= '9'){
+            } else if (msg.charAt(i) >= '0' && msg.charAt(i) <= '9') {
                 num++;
             } else {
                 other++;
@@ -29,7 +29,7 @@ public class Ex11_PracticeString {
                 소문자 : %d
                 숫 자 : %d
                 기 타 : %d
-                """,msg,big,small,num,other);
+                """, msg, big, small, num, other);
 
     }
 }
