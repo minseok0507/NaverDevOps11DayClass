@@ -9,7 +9,7 @@ public class Ex09_DateCalendar {
         Date date = new Date();
         int year = date.getYear(); //1900 빠진값
         int month = date.getMonth(); // 0~11
-        int day = date.getDate();//제대로 나옴
+        int day = date.getDate();
         int week = date.getDay();//0일 1월 2화 ... 6토
         int hour = date.getHours();
         int min = date.getMinutes();
