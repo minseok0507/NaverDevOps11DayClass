@@ -40,7 +40,7 @@ public class Ex09_VectorPractice {
             StudentDto sdt = new StudentDto(name, age, java, spring, html);
             list.add(sdt);
             System.out.println(list.size() + "번째 학생 입력 완료");
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력하시오." + e);
         }
     }
@@ -65,7 +65,6 @@ public class Ex09_VectorPractice {
                         list.get(i).getTotal(), list.get(i).getAvg(), list.get(i).getGrade());
                 list.remove(i);
                 System.out.println("삭제완료");
-
             }
         }
     }
@@ -143,13 +142,13 @@ public class Ex09_VectorPractice {
         }
 
         if (who) {
-            System.out.printf("이름에 %s가 포함된 학생이 없습니다.", s);
+            System.out.printf("이름에 %s가 포함된 학생이 없습니다.\n", s);
         }
     }
 
 
     public int getMenu() {
-        int menu;
+        int menu = 0;
         System.out.println("=".repeat(30));
         System.out.println("1.학생정보추가");
         System.out.println("2.학생정보삭제");
@@ -159,9 +158,15 @@ public class Ex09_VectorPractice {
         System.out.println("6.저장&종료");
         System.out.println("=".repeat(30));
 
-        menu = Integer.parseInt(sc.nextLine());
+        try {
+            menu = Integer.parseInt(sc.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("정수를 입력하세요.");
+        } finally {
+            return menu;
 
-        return menu;
+        }
+
     }
 
     public void ReadStudentFile() {

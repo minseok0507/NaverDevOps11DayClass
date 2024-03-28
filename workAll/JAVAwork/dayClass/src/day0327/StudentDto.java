@@ -6,7 +6,6 @@ public class StudentDto {
     private int java;
     private int spring;
     private int html;
-    private double avg;
     private int total;
     private String grade;
 
