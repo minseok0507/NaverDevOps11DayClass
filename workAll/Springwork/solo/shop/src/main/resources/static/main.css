@@ -1,106 +1,71 @@
 
-/*
-
-
-input, button {
- padding : 8px 13px;
- margin-top : 5px;
- border : 1px solid grey;
- border-radius : 4px;
- vertical-align : middle;
-}
-button {
- background : black;
- color : white;
- border : none;
-}
-input {
- display : block;
-}
-
-.detail {
- text-align : center;
-}
-.detail img{
- max-width : 30%;
- display : block;
- margin : auto;
-}
-
-*/
-/* main.css */
-
-/* 전체 페이지 스타일 */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* Form container style */
+.card{
+    width: 50%; /* 카드의 너비를 조절합니다. */
+    margin: 50px auto; /* 화면 중앙에 위치하도록 설정합니다. */
     padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-.card {
-    background-color: #fff;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    background-color: #f9f9f9;
 }
 
-.card img {
+input[type="text"] {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Image style */
+img {
+    margin-top: 20px;
+    display: block;
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto;
 }
 
-.card > a {
-    text-decoration: none;
-    color: #333;
+/* Page List style */
+.pagenum-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
 }
 
-.card > div {
-    padding: 20px 0;
+.pagenum-list li {
+  display: inline-block;
+  margin: 0 5px;
 }
 
-.btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.pagenum-list li a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.btn:hover {
-    background-color: #0056b3;
-}
-
-/* 내비게이션 스타일 */
-.navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0 10px;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
+.pagenum-list li a:hover {
+  background-color: #f0f0f0;
 }

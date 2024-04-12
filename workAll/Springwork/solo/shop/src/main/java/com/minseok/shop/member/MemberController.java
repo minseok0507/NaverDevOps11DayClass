@@ -33,6 +33,12 @@ public class MemberController {
         return "redirect:/"; // 홈 페이지로 리다이렉트
     }
 
+    @PostMapping("/logout")
+    public String performLogout() {
+
+        return "redirect:/";
+    }
+
     @PostMapping("/signup")
     String singup(String username, String password, String displayName) {
         if (password.length() >= 8) {

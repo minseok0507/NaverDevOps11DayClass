@@ -1,0 +1,51 @@
+
+
+/* Form style */
+form {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Image style */
+img {
+    margin-top: 20px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

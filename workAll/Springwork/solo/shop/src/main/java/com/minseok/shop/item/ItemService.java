@@ -17,7 +17,7 @@ public class ItemService {
         if (title == null || price == 0) return;
 
         //사진 등록안했을때 기본 사진 등록
-        if (url == null) url = "https://placehold.co/300";
+        if (url.equalsIgnoreCase("")) url = "https://placehold.co/300";
 
         Item item = new Item();
         item.title = title;

@@ -9,23 +9,24 @@
     <title>공지사항</title>
 </head>
 <body>
-    <h1>게시물</h1>
-    <div>
-        <table>
-            <tr>
-                <th>id</th>
-                <th>글제목</th>
-                <th>날짜</th>
-            </tr>
-            <tr th:each="i : ${notes}">
-                <td th:text="${i.id}"></td>
-                <td th:text="${i.글제목}"></td>
-                <td th:text="${i.날짜}"></td>
-            </tr>
+<div th:replace="~{ nav.html::navbar }"></div>
+<h1>게시물</h1>
+<div>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>글제목</th>
+            <th>날짜</th>
+        </tr>
+        <tr th:each="i : ${notes}">
+            <td th:text="${i.id}"></td>
+            <td th:text="${i.글제목}"></td>
+            <td th:text="${i.날짜}"></td>
+        </tr>
 
-        </table>
+    </table>
 
-    </div>
+</div>
 
 </body>
 </html>
