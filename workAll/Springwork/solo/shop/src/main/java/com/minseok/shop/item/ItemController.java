@@ -28,7 +28,7 @@ public class ItemController {
     String list(Model model) {
         List<Item> result = itemRepository.findAll();
         model.addAttribute("items", result);
-        System.out.println(result.size());
+        System.out.println("listSize : " + result.size());
 
         return "redirect:/list/page/1";
     }
@@ -36,7 +36,10 @@ public class ItemController {
     @GetMapping("/list/page/{page_num}")
     String getListPage(Model model, @PathVariable Integer page_num) {
         Page<Item> result = itemRepository.findPageBy(PageRequest.of(page_num - 1, 5));
-
+        //페이지 오버시
+        if (result.getTotalPages() < page_num){
+            return "redirect:/list/page/1";
+        }
         model.addAttribute("items", result);
         model.addAttribute("total_page", result.getTotalPages());
 
@@ -59,19 +62,41 @@ public class ItemController {
         return "redirect:/list";
     }
 
+//    @GetMapping("/detail/{id}")
+//    String detail(@PathVariable Long id, Model model) {
+//        Optional<Item> result = itemRepository.findById(id);
+//        if (result.isPresent()) {
+//            model.addAttribute("item", result.get());
+//
+//            List<Comment> comments = commentRepository.findByParentId(result.get().id);
+//            model.addAttribute("comments", comments);
+//
+//            return "detail.html";
+//        }
+//        return "redirect:/list";
+//    }
+
     @GetMapping("/detail/{id}")
-    String detail(@PathVariable Long id, Model model) {
+    String detailComment(@PathVariable Long id,
+                         @RequestParam(value = "comment", defaultValue = "1") Integer page_num,
+                         Model model) {
         Optional<Item> result = itemRepository.findById(id);
+        Page<Comment> commentsPage = commentRepository.findByParentId(id, PageRequest.of(page_num-1,9));
+        if (commentsPage.getTotalPages() < page_num){//페이지 오버시
+            return "redirect:/detail/" + id;
+        }
         if (result.isPresent()) {
             model.addAttribute("item", result.get());
-
-            List<Comment> comments = commentRepository.findByParentId(result.get().id);
-            model.addAttribute("comments", comments);
+            model.addAttribute("comments", commentsPage);
+            model.addAttribute("page_num", page_num);
+            model.addAttribute("total_page", commentsPage.getTotalPages());
 
             return "detail.html";
         }
         return "redirect:/list";
     }
+
+
 
     @GetMapping("/EditItem/{id}")
     String EditItem(@PathVariable Long id, Model model) {

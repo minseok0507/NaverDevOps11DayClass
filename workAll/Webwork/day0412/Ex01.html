@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>image폴더 읽어보기</h2>
+
+    <form>
+        <div> <input type="file" id="directory_upload" webkitdirectory> </div>
+        <div class="file_list">
+            <p></p>
+        </div>
+    </form>
+    <Script>
+        const input = document.querySelector('input');
+        const preview = document.querySelector('.file_list');
+
+        input.addEventListener('change', showTextFile);
+        function showTextFile() {
+            alert(input);
+            alert(preview);
+    
+            const selectedFiles = input.files; 
+            const list = document.createElement('ul');
+            preview.appendChild(list);
+            for (const file of selectedFiles) {
+                 const listItem = document.createElement('li');
+                 const summary = document.createElement('div');
+                 summary.textContent = file.webkitRelativePath;
+                 listItem.appendChild(summary);
+                 list.appendChild(listItem);
+                }
+            }
+
+    </Script>
+
+</body>
+
+</html>

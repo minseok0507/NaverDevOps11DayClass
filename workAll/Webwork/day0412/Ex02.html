@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <table class="table">
+
+    </table>
+
+    <script>
+        const table = document.getElementsByClassName('table')[0];
+        const tr = document.createElement('tr');
+        table.appendChild(tr);
+
+        for (var i = 2; i <= 9; i++) {
+            const th = document.createElement('th');
+            tr.appendChild(th);
+            th.textContent = `${i}단`;
+        }
+
+
+        for (var i1 = 2; i1 <= 9; i1++) {
+            const tr = document.createElement('tr');
+            table.appendChild(tr);
+            for (var j = 2; j <= 9; j++) {
+                const td = document.createElement('td');
+                tr.appendChild(td);
+                td.textContent = j + " X " + i1 + " = " + i1 * j;
+            }
+        }
+
+    </script>
+
+
+</body>
+
+</html>

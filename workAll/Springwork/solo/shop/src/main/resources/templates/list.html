@@ -6,8 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/list.css">
+    <link rel="stylesheet" href="/pagenation.css">
     <link rel="stylesheet" href="/nav.css">
+
 </head>
 <body>
 <div th:replace="~{ nav.html::navbar }"></div>
@@ -35,18 +37,19 @@
 
 <ul class="pagenum-list">
     <li>
+        <span class="total_page" th:text="${ total_page }"></span>
+
         <a th:href="@{  '/list/page/' + ${page_num - 1} }"><</a>
-        <a th:each="num : ${#numbers.sequence(1, total_page)}" th:href="@{  '/list/page/' + ${num} }" th:text="${num}"></a>
+
+        <a th:each="num : ${#numbers.sequence(1, total_page)}"
+           th:href="@{  '/list/page/' + ${num} }"
+           th:text="${num}"></a>
+
         <a th:href="@{  '/list/page/' + ${page_num + 1} }">></a>
     </li>
 </ul>
 
-
-<script>
-
-
-</script>
-
+<script src="/pagenation.js"></script>
 
 </body>
 </html>

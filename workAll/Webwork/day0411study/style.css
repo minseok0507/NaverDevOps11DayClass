@@ -1,0 +1,65 @@
+*{
+    margin : 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    font-family: 'SUITE';
+}
+
+.container{
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 50px;
+}
+
+.container input{
+    width: 90%;
+    height: 50px;
+    border-radius: 50px;
+    padding: 5px 0px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.container input[type=button] {
+    background-color: black;
+    color: white;
+}
+
+.container input[type=button]:hover{
+    background-color: white;
+    color: black;
+}
+
+.container p{
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+header {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+
+}
+.list{
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    list-style: none;
+    
+}
+.list li{
+    float: left;
+    margin-right: 20px;
+}
+
+.main{
+    box-sizing: border-box;
+    padding: 30px;
+}

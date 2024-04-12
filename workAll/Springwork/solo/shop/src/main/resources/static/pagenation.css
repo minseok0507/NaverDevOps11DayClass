@@ -1,0 +1,24 @@
+
+/* Page List style */
+.pagenum-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.pagenum-list li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagenum-list li a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagenum-list li a:hover {
+  background-color: #f0f0f0;
+}

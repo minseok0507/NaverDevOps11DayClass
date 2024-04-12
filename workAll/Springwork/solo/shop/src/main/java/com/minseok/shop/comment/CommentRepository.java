@@ -10,5 +10,5 @@ import java.util.Optional;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByParentId(Long parentId);
-    Page<Comment> findPageBy(PageRequest page);
+    Page<Comment> findByParentId(Long parentId, PageRequest page);
 }
