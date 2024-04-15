@@ -16,11 +16,7 @@ import java.util.List;
 public class CommentController {
     private final CommentRepository commentRepository;
 
-    @PostMapping("/comment")
-    String comment(Long parentId, String username, String content) {
-        if (content.equalsIgnoreCase("") || username == null){
-            return "redirect:/detail/" + parentId;
-        }
+    private void commentAdd(Long parentId, String username, String content) {
         Comment comment = new Comment();
         comment.parentId = parentId;
         comment.username = username;
@@ -28,6 +24,16 @@ public class CommentController {
         comment.dateTime = LocalDateTime.now();
 
         commentRepository.save(comment);
+    }
+
+    //댓글 추가 엑션
+    @PostMapping("/comment")
+    String comment(Long parentId, String username, String content) {
+        if (content.equalsIgnoreCase("") || username == null) {
+            return "redirect:/detail/" + parentId;
+        }
+        commentAdd(parentId, username, content);
+
 
         return "redirect:/detail/" + parentId;
     }

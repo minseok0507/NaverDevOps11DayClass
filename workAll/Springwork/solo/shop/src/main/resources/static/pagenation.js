@@ -8,7 +8,7 @@ if (totalPageElement) {
         if (pageList) {
             pageList.style.display = "none";
         }
-    }else{
+    } else {
         totalPageElement.style.display = "none";
     }
 }

@@ -1,9 +1,16 @@
 package com.minseok.shop.item;
 
+import com.minseok.shop.comment.Comment;
+import com.minseok.shop.comment.CommentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -11,6 +18,7 @@ import java.util.Optional;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final CommentRepository commentRepository;
 
     public void saveItem(String title, Integer price,String url, Authentication auth) {
         //제품명이 없거나 가격이 0일 때 db에 저장하지 않고 리턴함
@@ -52,7 +60,39 @@ public class ItemService {
             itemRepository.save(item);
             System.out.println(item);
         }
-
     }
+
+    // 제품 페이징 처리
+    public Page<Item> getListPage(Integer page_num, Integer size) {
+        return itemRepository.findPageBy(PageRequest.of(page_num - 1, size));
+    }
+
+    public Page<Item> getSearchPage(@RequestParam String text,
+                             @RequestParam(defaultValue = "0") int page,
+                             @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return itemRepository.queryFindByPage(text, pageable);
+    }
+
+    // 제품 상세 조회
+    public Optional<Item> getItem(Long id) {
+        return itemRepository.findById(id);
+    }
+
+    //제품 상세 페이지 댓글 페이징 처리
+    public Page<Comment> getCommentPage(Long id, Integer page_num, Integer size) {
+        return commentRepository.findByParentId(id, PageRequest.of(page_num - 1, size));
+    }
+
+    //
+    public void delComment(Long parentId){
+        var parent = commentRepository.findByParentId(parentId);
+
+        for (int i = 0; i < parent.size(); i++) {
+            commentRepository.deleteById(parent.get(i).id);
+        }
+    }
+
+
 
 }

@@ -45,13 +45,13 @@
     <li>
         <span class="total_page" th:text="${ total_page }"></span>
 
-        <a th:href="@{  '/list/' + ${page_num - 1} }"><</a>
+        <a th:href="@{  '/search/result?search=' + ${search_text} + '&page_num=' + ${page_num - 1} }"><</a>
 
         <a th:each="num : ${#numbers.sequence(1, total_page)}"
-           th:href="@{  '/list/' + ${num} }"
+           th:href="@{ '/search/result?search=' + ${search_text} + '&page_num='+ ${num} }"
            th:text="${num}"></a>
 
-        <a th:href="@{  '/list/' + ${page_num + 1} }">></a>
+        <a th:href="@{  '/search/result?search=' + ${search_text} + '&page_num=' + ${page_num + 1} }">></a>
     </li>
 </ul>
 
