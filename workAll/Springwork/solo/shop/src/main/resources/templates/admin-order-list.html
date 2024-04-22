@@ -6,6 +6,7 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/nav.css">
     <title>Document</title>
 
     <style>
@@ -83,11 +84,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="i : ${orders}">
-                <td th:text="${ i.id }">1</td>
-                <td th:text="${ i.itemId }">싱품정보다아아앙</td>
+            <tr th:each="i : ${orderDtoList}">
+                <td th:text="${ i.orderId }">1</td>
+                <td th:text="${ i.itemTitle }">싱품정보다아아앙</td>
                 <td th:text="${ i.quantity }">수량이양ㅁㅇ</td>
-                <td th:text="${ i.userId }">민석잉</td>
+                <td th:text="${ i.userName }">민석잉</td>
                 <td th:text="${ i.orderDate }">2021412</td>
                 <td th:text="${ i.orderStatus }">준비 중</td>
             </tr>

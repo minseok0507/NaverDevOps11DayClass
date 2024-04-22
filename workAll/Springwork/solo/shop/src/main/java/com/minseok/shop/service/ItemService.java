@@ -93,10 +93,9 @@ public class ItemService {
         var parent = commentRepository.findByParentId(parentId);
         if (!parent.isEmpty()) {
             for (Comment comment : parent) {
-                commentRepository.deleteById(comment.id);
+                commentRepository.deleteById(comment.getId());
             }
         }
-
     }
 
 

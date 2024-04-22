@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 
@@ -13,20 +12,30 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-@Table(name = "orders")
-public class Orders {
+public class OrderNew {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(
+            name = "userId",
+            foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
+    )
+    private Member member;
 
-    private Long itemId;
-    private Long itemPrice;
+    @ManyToOne
+    @JoinColumn(
+            name = "itemId",
+            foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT)
+    )
+    private Item item;
+
     private Integer quantity;
 
     @CreationTimestamp
     private LocalDateTime orderDate;
 
     private String orderStatus;
+
 }

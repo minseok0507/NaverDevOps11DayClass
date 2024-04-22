@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Controller
@@ -29,6 +31,7 @@ public class CartController {
     private final MemberRepository memberRepository;
     private final CartItemRepository cartItemRepository;
     private final OrdersRepository ordersRepository;
+    private final OrderNewRepository orderNewRepository;
 
     @PostMapping("/item")
     ResponseEntity<String> addCart(@RequestParam Long id,
@@ -61,6 +64,54 @@ public class CartController {
         return ResponseEntity.ok("장바구니 추가함");
     }
 
+    @PostMapping("/newOrder")
+    String addOrder(Long itemId,
+                    Integer quantity,
+                    Authentication auth) {
+        // 사용자 찾기
+        var userOptional = memberRepository.findByUsername(auth.getName());
+        if (userOptional.isEmpty()) {
+            return "redirect://detail/" + itemId;
+        }
+        var userId = userOptional.get().id;
+
+        OrderNew orderNew = new OrderNew();
+        orderNew.setQuantity(quantity);
+        Member member = new Member();
+        member.setId(userId);
+        orderNew.setMember(member);
+        Item item = new Item();
+        item.setId(itemId);
+        orderNew.setItem(item);
+
+        orderNewRepository.save(orderNew);
+
+
+
+        return "pay.html";
+    }
+
+    @GetMapping("/orderAll")
+    String orderAll(Model model, Authentication auth) {
+        if (!auth.getName().equals("admin")) {
+            return "redirect:/";
+        }
+        var orderDtoList = new ArrayList<>();
+
+        var resultAll = orderNewRepository.findAll();
+        for (int i = 0; i < resultAll.size(); i++) {
+            OrderDto orderDto = new OrderDto();
+            orderDto.setItemTitle(resultAll.get(i).getItem().getTitle());
+            orderDto.setUserName(resultAll.get(i).getMember().getUsername());
+            orderDto.setQuantity(resultAll.get(i).getQuantity());
+            orderDto.setOrderDate(resultAll.get(i).getOrderDate());
+            orderDto.setOrderStatus(resultAll.get(i).getOrderStatus());
+            orderDtoList.add(orderDto);
+        }
+
+        model.addAttribute("orderDtoList", orderDtoList);
+        return "admin-order-list.html";
+    }
 
     //장바구니
     @GetMapping("/cart")
@@ -129,7 +180,6 @@ public class CartController {
     }
 
     //주문 처리
-
     @PostMapping("/order")
     String order(@RequestParam("arrayOrderData") String arrayDataJson, Authentication auth) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -162,16 +212,39 @@ public class CartController {
 
     @GetMapping("/myorder")
     String orderList(Model model, Authentication auth) {
-        if (!auth.getName().equals("admin")){
+        if (!auth.getName().equals("admin")) {
             return "redirect:/";
         }
-        var resultAll = ordersRepository.findAll();
 
-        model.addAttribute("orders",resultAll);
+        List<Orders> orders = ordersRepository.findAll();
+        Map<Long, Item> itemMap = itemRepository.findAllById(orders.stream()
+                        .map(Orders::getItemId)
+                        .collect(Collectors.toList()))
+                .stream()
+                .collect(Collectors.toMap(Item::getId, Function.identity()));
+        Map<Long, Member> memberMap = memberRepository.findAllById(orders.stream()
+                        .map(Orders::getUserId)
+                        .collect(Collectors.toList()))
+                .stream()
+                .collect(Collectors.toMap(Member::getId, Function.identity()));
 
+        List<OrderDto> orderDtoList = orders.stream()
+                .map(order -> {
+                    OrderDto orderDto = new OrderDto();
+                    orderDto.setOrderId(order.getId());
+                    orderDto.setItemTitle(itemMap.get(order.getItemId()).getTitle());
+                    orderDto.setUserName(memberMap.get(order.getUserId()).getUsername());
+                    orderDto.setQuantity(order.getQuantity());
+                    orderDto.setOrderDate(order.getOrderDate());
+                    orderDto.setOrderStatus(order.getOrderStatus());
+                    return orderDto;
+                })
+                .collect(Collectors.toList());
 
+        model.addAttribute("orderDtoList", orderDtoList);
         return "admin-order-list.html";
     }
+
 
 
 
