@@ -1,5 +1,6 @@
-package com.minseok.shop.member;
+package com.minseok.shop.repository;
 
+import com.minseok.shop.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

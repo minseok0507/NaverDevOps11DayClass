@@ -1,8 +1,10 @@
-package com.minseok.shop.item;
+package com.minseok.shop.controller;
 
 
-import com.minseok.shop.comment.Comment;
-import com.minseok.shop.comment.CommentRepository;
+import com.minseok.shop.model.*;
+import com.minseok.shop.repository.CartItemRepository;
+import com.minseok.shop.repository.ItemRepository;
+import com.minseok.shop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,24 +14,28 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.util.UriEncoder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Optional;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
+    private final CartItemRepository cartItemRepository;
     private final S3Service s3Service;
 
 
     // 아이템 리스트 조회
     @GetMapping("/list")
     String list() {
+        return "redirect:/list/1";
+    }
+    @PostMapping("/list")
+    String postList() {
         return "redirect:/list/1";
     }
 
@@ -45,6 +51,7 @@ public class ItemController {
             return "redirect:/list/" + result.getTotalPages();
         }
 
+
         model.addAttribute("items", result);
         model.addAttribute("total_page", result.getTotalPages());
 
@@ -54,7 +61,7 @@ public class ItemController {
 
     @PostMapping("/search")
     public String postSearch(@RequestParam String searchText) throws UnsupportedEncodingException {
-        String encodeSearchText = URLEncoder.encode(searchText, "UTF-8");
+        String encodeSearchText = URLEncoder.encode(searchText, StandardCharsets.UTF_8);
         System.out.println(encodeSearchText);
 
 
@@ -88,7 +95,7 @@ public class ItemController {
 
     //제품 추가 엑션
     @PostMapping("/add")
-    String addPost(String title, Integer price, String url, Authentication auth) {
+    String addPost(String title, Long price, String url, Authentication auth) {
         itemService.saveItem(title, price, url, auth);
 
         return "redirect:/list";
@@ -118,8 +125,14 @@ public class ItemController {
 
     //제품 수정 페이지
     @GetMapping("/EditItem/{id}")
-    String EditItem(@PathVariable Long id, Model model) {
-        Optional<Item> result = itemRepository.findById(id);
+    String EditItem(@PathVariable Long id, Model model, Authentication auth) {
+        //접속 유저 확인 후 유저이름 전달
+        String writeUser = null;
+        if (auth != null) writeUser = auth.getName();
+        model.addAttribute("writeUser", writeUser);
+
+        //아이템정보 조회 후 전달
+        var result = itemRepository.findById(id);
         if (result.isPresent()) {
             model.addAttribute("items", result.get());
 
@@ -130,11 +143,11 @@ public class ItemController {
 
     //제품 수정 엑션
     @PostMapping("/edit")
-    String editPost(Long id, String title, Integer price, Authentication auth) {
+    String editPost(Long id, String title, Long price, String url, Authentication auth) {
         if (title.length() > 100 || price < 0) {
             return "error";
         }
-        itemService.editItem(id, title, price, auth);
+        itemService.editItem(id, title, price, url, auth);
 
         return "redirect:/list";
     }
@@ -146,8 +159,15 @@ public class ItemController {
         itemRepository.deleteById(id);
         //댓글 지우기
         itemService.delComment(id);
+        //카드 등록된 제품 지우기
+        var delCart = cartItemRepository.findAllByItemId(id);
+        for (CartItem cartItem : delCart) {
+            cartItemRepository.deleteById(cartItem.getId());
+        }
         return ResponseEntity.status(200).body("삭제함");
     }
+
+
 
     //aws s3저장
     @GetMapping("/presigned-url")

@@ -1,4 +1,4 @@
-package com.minseok.shop.notice;
+package com.minseok.shop.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

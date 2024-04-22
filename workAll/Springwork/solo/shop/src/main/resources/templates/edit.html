@@ -8,6 +8,7 @@
     <title>상품변경</title>
     <link rel="stylesheet" href="/main.css">
     <link rel="stylesheet" href="/nav.css">
+    <script src="/uploadURL.js"></script>
 </head>
 <body>
 
@@ -18,8 +19,11 @@
 
     제품이름<input type="text" th:value="${ items.title }" name="title"><br>
     제품가격<input type="text" th:value="${ items.price }" name="price"><br>
+    <input type="text" name="url" style="display: none;">
+    <input type="text" th:value="${ writeUser }" name="writeUser" style="display: none;">
+    <input type="file" onchange="getURL(this)">
     <button type="submit">전송</button>
 </form>
-
+<img th:src="${ items.url }" alt="" width="500px">
 </body>
 </html>

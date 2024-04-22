@@ -1,15 +1,12 @@
-package com.minseok.shop.comment;
+package com.minseok.shop.controller;
 
-import com.minseok.shop.item.Item;
+import com.minseok.shop.repository.CommentRepository;
+import com.minseok.shop.model.Comment;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

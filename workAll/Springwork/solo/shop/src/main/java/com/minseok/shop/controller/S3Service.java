@@ -1,4 +1,4 @@
-package com.minseok.shop.item;
+package com.minseok.shop.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

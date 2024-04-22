@@ -1,5 +1,6 @@
-package com.minseok.shop.notice;
+package com.minseok.shop.controller;
 
+import com.minseok.shop.model.Notice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NoticeController {
 
-    private final noticeRepository noticeRepository;
+    private final com.minseok.shop.repository.noticeRepository noticeRepository;
 
 
 

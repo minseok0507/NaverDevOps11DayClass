@@ -1,4 +1,4 @@
-package com.minseok.shop.comment;
+package com.minseok.shop.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

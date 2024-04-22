@@ -1,16 +1,14 @@
-package com.minseok.shop.member;
+package com.minseok.shop.controller;
 
+import com.minseok.shop.model.CustomUser;
+import com.minseok.shop.model.Member;
+import com.minseok.shop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.net.Authenticator;
-import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -41,7 +39,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     String singup(String username, String password, String displayName) {
-        if (password.length() >= 8) {
+        if (password.length() >= 6) {
             Member member = new Member();
             member.username = username;
             var hash = passwordEncoder.encode(password);

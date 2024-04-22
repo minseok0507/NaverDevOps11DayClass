@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        p,
+        span {
+            margin: 0;
+        }
+
+        a {
+            color: black;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            padding: 30px;
+            min-width: 600px;
+        }
+
+        table {
+            border-top: solid 1.5px black;
+            border-collapse: collapse;
+
+            font-size: 14px;
+        }
+
+        thead {
+            text-align: center;
+            font-weight: bold;
+            
+        }
+
+        
+        tbody {
+            font-size: 12px;
+        }
+
+        td {
+            padding: 15px 0px;
+            border-bottom: 1px solid lightgrey;
+        }
+
+        tbody td{
+            padding-left: 5px;
+            border-right: 1px solid lightgrey;
+        }
+
+        tbody td:last-child{
+            border-right: 0;
+        }
+            
+    </style>
+</head>
+
+<body>
+    <div th:replace="~{ nav.html::navbar }"></div>
+    <h1>관리자 주문 내역</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>주문번호</td>
+                <td>상품정보</td>
+                <td>수량</td>
+                <td>주문자명</td>
+                <td>주문시간</td>
+                <td>주문상태</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="i : ${orders}">
+                <td th:text="${ i.id }">1</td>
+                <td th:text="${ i.itemId }">싱품정보다아아앙</td>
+                <td th:text="${ i.quantity }">수량이양ㅁㅇ</td>
+                <td th:text="${ i.userId }">민석잉</td>
+                <td th:text="${ i.orderDate }">2021412</td>
+                <td th:text="${ i.orderStatus }">준비 중</td>
+            </tr>
+        </tbody>
+
+    </table>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
-package com.minseok.shop.item;
+package com.minseok.shop.repository;
 
+import com.minseok.shop.model.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
     Page<Item> findPageBy(PageRequest page);
@@ -20,4 +22,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query(value = "SELECT * FROM shop.item WHERE match(title) against(?1);", nativeQuery = true)
     List<Item> queryFindByTitle(String text);
+
+    List<Item> findByIdIn(List<Long> ids);
+
+
 }

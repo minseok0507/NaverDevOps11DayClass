@@ -1,7 +1,9 @@
-package com.minseok.shop.item;
+package com.minseok.shop.service;
 
-import com.minseok.shop.comment.Comment;
-import com.minseok.shop.comment.CommentRepository;
+import com.minseok.shop.model.Comment;
+import com.minseok.shop.model.Item;
+import com.minseok.shop.repository.CommentRepository;
+import com.minseok.shop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,7 +21,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final CommentRepository commentRepository;
 
-    public void saveItem(String title, Integer price,String url, Authentication auth) {
+    public void saveItem(String title, Long price,String url, Authentication auth) {
         //제품명이 없거나 가격이 0일 때 db에 저장하지 않고 리턴함
         if (title == null || price == 0) return;
 
@@ -43,11 +44,14 @@ public class ItemService {
         itemRepository.save(item);
     }
 
-    public void editItem(Long id, String title, Integer price, Authentication auth) {
+    public void editItem(Long id, String title, Long price, String url, Authentication auth) {
         Optional<Item> result = itemRepository.findById(id);
         if (result.isPresent()) {
-            Item item = result.get();
+            //사진 등록안했을때 기본 사진 등록
+            if (url.equalsIgnoreCase("")) url = "https://placehold.co/300";
 
+            Item item = result.get();
+            item.url = url;
             item.title = title;
             item.price = price;
 
@@ -87,12 +91,13 @@ public class ItemService {
     //
     public void delComment(Long parentId){
         var parent = commentRepository.findByParentId(parentId);
-
-        for (int i = 0; i < parent.size(); i++) {
-            commentRepository.deleteById(parent.get(i).id);
+        if (!parent.isEmpty()) {
+            for (Comment comment : parent) {
+                commentRepository.deleteById(comment.id);
+            }
         }
-    }
 
+    }
 
 
 }
