@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        let curdate = new Date(); //현재 날짜
+        let curYear = curdate.getFullYear(); //현재 년도
+        let curMonth = curdate.getMonth() + 1; //현재 월
+
+    </script>
+    <style>
+        .dateView {
+            margin: 40px 20px;
+        }
+
+        .dateView table {
+            border: 5px groove gray;
+            border-collapse: collapse;
+            width: 500px;
+        }
+
+        table thead tr {
+            height: 50px;
+            background-color: skyblue;
+            color: brown;
+            border-bottom: 4px double green;
+        }
+
+        table tbody td {
+            height: 50px;
+            border: 1px solid green;
+        }
+        table tbody td:first-child{
+            color: red;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <select name="" id="selYear">
+        <script>
+            for (let y = curYear; y >= 1950; y--) {
+                document.write(`<option>${y}</option>`);
+            }
+        </script>
+
+    </select> 년 &nbsp;&nbsp;
+    <select name="" id="selMonth">
+        <script>
+            for (let m = 1; m <= 12; m++) {
+                document.write(`<option ${m == curMonth ? "selected" : ""}>${m}</option>`);
+            }
+        </script>
+    </select> 월&nbsp;&nbsp; 선택
+    <h1 id="h1"></h1>
+    <div class="dateView">
+        
+    </div>
+
+
+    <script>
+        let dateView = document.querySelector("div.dateView");;
+
+        window.onload = function () {
+
+
+
+
+            document.getElementById("selYear").onchange = function () {
+                curYear = this.value;
+                calendarViwe();
+            }
+            document.getElementById("selMonth").onchange = function () {
+                curMonth = this.value;
+                calendarViwe();
+            }
+        }
+
+        function calendarViwe() {
+            let lastDate = new Date(curYear, curMonth, 0).getDate();
+            let startDay = new Date(curYear, curMonth - 1, 1).getDay();
+            let h1 = document.getElementById('h1');
+            h1.innerHTML = curYear + "년 " + curMonth + "월 달력"
+            let tag = "";
+            tag +=
+                `
+            <table>
+                <thead>
+                    <tr>
+                        <th>일</th>
+                        <th>월</th>
+                        <th>화</th>
+                        <th>수</th>
+                        <th>목</th>
+                        <th>금</th>
+                        <th>토</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+
+            let week = startDay;
+            tag += "<tr>";
+            if (week != 0){
+                tag += `<td colspan="${startDay}"></td>`;
+            }
+        
+            for (let day = 1; day <= lastDate; day++) {
+                tag += `<td>${day}</td>`;
+                week++;
+                if(week == 7){
+                    tag += '</tr><tr>';
+                    week = 0;
+                }
+            }
+
+
+            tag += `</tbody></table>`;
+            dateView.innerHTML = tag;
+        }
+
+    </script>
+</body>
+
+</html>
