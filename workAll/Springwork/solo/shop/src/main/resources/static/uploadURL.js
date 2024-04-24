@@ -44,5 +44,5 @@ async function getURL(e) {
         document.querySelector('img').src = uploadResult.url.split("?")[0];
         document.getElementsByName("url")[0].value = uploadResult.url.split("?")[0];
     }
-    alert("asdf");
+
 }

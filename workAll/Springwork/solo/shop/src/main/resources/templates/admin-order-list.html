@@ -86,7 +86,7 @@
         <tbody>
             <tr th:each="i : ${orderDtoList}">
                 <td th:text="${ i.orderId }">1</td>
-                <td th:text="${ i.itemTitle }">싱품정보다아아앙</td>
+                <td><a  th:text="${ i.itemTitle }" th:href="@{  '/detail/' + ${i.itemId}  }">싱품정보다아아앙</a></td>
                 <td th:text="${ i.quantity }">수량이양ㅁㅇ</td>
                 <td th:text="${ i.userName }">민석잉</td>
                 <td th:text="${ i.orderDate }">2021412</td>

@@ -16,15 +16,6 @@ public class CartDto{
     private String itemUrl;
 
 
-    public CartDto(CartItem cartItem, Item item){
-        this.id = cartItem.getId();
-        this.userId = cartItem.getUserId();
-        this.itemId = cartItem.getItemId();
-        this.quantity = cartItem.getQuantity();
-        this.itemTitle = item.getTitle();
-        this.itemPrice = item.getPrice();
-        this.itemUrl = item.getUrl();
-    }
 }
 
 

@@ -160,10 +160,10 @@ public class ItemController {
         //댓글 지우기
         itemService.delComment(id);
         //카드 등록된 제품 지우기
-        var delCart = cartItemRepository.findAllByItemId(id);
-        for (CartItem cartItem : delCart) {
-            cartItemRepository.deleteById(cartItem.getId());
-        }
+//        var delCart = cartItemRepository.findAllByItemId(id);
+//        for (CartItem cartItem : delCart) {
+//            cartItemRepository.deleteById(cartItem.getId());
+//        }
         return ResponseEntity.status(200).body("삭제함");
     }
 

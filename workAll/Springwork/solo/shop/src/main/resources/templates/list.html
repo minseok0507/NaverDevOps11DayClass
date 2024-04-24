@@ -38,13 +38,6 @@
         })
         ">삭제
     </button>
-    <button class="cartBtn" sec:authorize="isAuthenticated()"
-            th:onclick="fetch('/item?id=[[${i.id}]]', {method : 'POST'})
-        .then(() => {
-            location.reload();
-        })
-        ">장바구니 추가
-    </button>
 </div>
 
 <ul class="pagenum-list">
