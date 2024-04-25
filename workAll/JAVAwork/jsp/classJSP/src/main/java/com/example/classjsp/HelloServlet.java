@@ -1,4 +1,4 @@
-package com.example.classproject;
+package com.example.classjsp;
 
 import java.io.*;
 import javax.servlet.http.*;
