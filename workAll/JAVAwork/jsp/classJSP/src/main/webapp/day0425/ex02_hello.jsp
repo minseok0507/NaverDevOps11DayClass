@@ -90,6 +90,16 @@
             <%=blood%>
         </td>
     </tr>
+    <tr>
+        <td>취미</td>
+        <td colspan="3">
+            <%
+                for (String h : hobby) {
+                    out.print(h + "<br>");
+                }
+            %>
+        </td>
+    </tr>
 
 </table>
 </body>
