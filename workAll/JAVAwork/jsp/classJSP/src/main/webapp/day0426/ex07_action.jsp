@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 26.
-  Time: 오전 10:48
+  Time: 오후 12:36
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +19,27 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
 </head>
-<body>
-<h3>JSP의 Action Tag include</h3>
-
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
-
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
-
 <%
-    
-%>
+    //post로 보낸 데이터는 엔코딩해줘야됨(영어는 안깨짐;;)
+    request.setCharacterEncoding("UTF-8");
 
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
+    String home = request.getParameter("home");
+    String email = request.getParameter("email");
+    String[] hobby = request.getParameterValues("hobby");
+%>
+<body>
+    <h5>나의 주거지 : <%=home%></h5>
+    <h5>나의 email : <%=email%></h5>
+    <h5>나의 취미 : <%
+        if (hobby == null || hobby.length == 0) {
+            out.print("취미가 없음");
+        }else {
+            for (int i = 0; i < hobby.length; i++) {
+                out.print(hobby[i]);
+            }
+        }
+    %></h5>
 </body>
 </html>

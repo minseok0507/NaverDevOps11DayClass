@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 26.
-  Time: 오전 10:48
+  Time: 오후 3:50
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +19,35 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
+    <%
+        request.setCharacterEncoding("utf-8");
+
+        String menu = request.getParameter("menu");
+        String food = request.getParameter("food");
+        String grade = request.getParameter("grade");
+        String member  = request.getParameter("member");
+
+        String[] arr = food.split(",");
+        String foodImg = arr[0];
+        String price = arr[1];
+
+        if (member == null){
+            member = "일반회원";
+        } else {
+            member = "우수회원";
+        }
+
+    %>
 </head>
 <body>
-<h3>JSP의 Action Tag include</h3>
-
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
-
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
-
-<%
-    
-%>
-
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
+<h1><%=menu%></h1>
+<img src="<%=foodImg%>" alt="">
+<h2> <span><%=price%>원</span></h2>
+<h3><span><%=grade%></span> <%=member%></h3>
+<br><br>
+<a href="javascript:history.back()">다시 선택 #1</a>
+<br><br>
+<a href="ex10_form.jsp">다시 선택 #2</a>
 </body>
 </html>

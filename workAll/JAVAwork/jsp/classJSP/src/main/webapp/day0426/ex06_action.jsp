@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 26.
-  Time: 오전 10:48
+  Time: 오전 11:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +19,18 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
 </head>
-<body>
-<h3>JSP의 Action Tag include</h3>
-
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
-
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
-
 <%
-    
-%>
+//    get방식 폼데이터 읽기
+    String name = request.getParameter("name");
+    String photo = request.getParameter("photo");
 
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
+%>
+<body>
+<h4>action 페이지</h4>
+<h2>이름 : <%=name%></h2>
+<hr>
+<img src="<%=photo%>" alt="" width="300">
 </body>
 </html>

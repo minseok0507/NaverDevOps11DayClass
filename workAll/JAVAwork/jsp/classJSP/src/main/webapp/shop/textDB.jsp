@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: minseok
-  Date: 24. 4. 26.
-  Time: 오전 10:48
+  Date: 24. 4. 28.
+  Time: 오후 2:59
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +19,19 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
 </head>
+
 <body>
-<h3>JSP의 Action Tag include</h3>
+<%@ page import="java.sql.*"%>
+<%@ page import="com.example.classjsp.DBconnect" %>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
-
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
+<h2>JDBC드라이버 테스트 </h2>
 
 <%
-    
+    DBconnect connect = new DBconnect();
 %>
 
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
 </body>
 </html>

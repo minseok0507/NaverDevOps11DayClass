@@ -1,8 +1,9 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 26.
-  Time: 오전 10:48
+  Time: 오전 11:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +20,19 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
 </head>
-<body>
-<h3>JSP의 Action Tag include</h3>
-
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
-
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
-
 <%
-    
-%>
+    //    request 저장된 list 꺼내기
+    List<String> list = (List<String>) request.getAttribute("list");
 
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
+%>
+<body>
+<h1>forward2 파일</h1>
+<%
+    for (int i = 0; i < list.size(); i++) {
+        out.println("<h3>" + list.get(i) + "</h3>");
+    }
+%>
 </body>
 </html>

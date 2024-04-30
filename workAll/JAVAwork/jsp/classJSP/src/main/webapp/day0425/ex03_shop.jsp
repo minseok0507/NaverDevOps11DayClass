@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Vector" %>
-<%@ page import="com.example.classjsp.ShopDto" %><%--
+<%@ page import="com.example.classjsp.data.dto.ShopDto" %><%--
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 25.

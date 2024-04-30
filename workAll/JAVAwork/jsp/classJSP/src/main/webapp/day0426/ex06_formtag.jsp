@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 26.
-  Time: 오전 10:48
+  Time: 오전 11:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +19,24 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
 </head>
 <body>
-<h3>JSP의 Action Tag include</h3>
+<h5>JSP 폼태그 읽기</h5>
+<form action="ex06_action.jsp" method="get">
+    이름 : <input type="text" name="name" id="name" required> <br><br>
+    사진 :
+    <select name="photo" id="photo">
+        <option value="../img/star/17.jpg">신민아</option>
+        <option value="../img/star/18.jpg">설현</option>
+        <option value="../img/star/19.jpg">신세경</option>
+        <option value="../img/star/20.jpg">수지</option>
+    </select>
+    <br><br>
+    <input type="image" src="../img/mycar/mycar11.png" width="70">
+    <button><img src="../img/mycar/mycar11.png" style="width: 70px;"></button>
 
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
 
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
-
-<%
-    
-%>
-
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
+</form>
 </body>
 </html>

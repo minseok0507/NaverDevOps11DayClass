@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 4. 26.
-  Time: 오전 10:48
+  Time: 오후 2:17
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,30 +19,40 @@
             font-family: 'Jua';
         }
     </style>
-    <title>day0426</title>
+    <title>Title</title>
 </head>
-<body>
-<h3>JSP의 Action Tag include</h3>
-
-<h5 class="title">ex01_text.jsp</h5>
-<div class="view">
-    <jsp:include page="ex01_text.jsp"></jsp:include>
-</div>
-
-<h5 class="title">ex02_gugudan.jsp</h5>
-<div class="view">
-    <jsp:include page="ex02_gugudan.jsp"></jsp:include>
-</div>
-
 <%
-    
-%>
+    request.setCharacterEncoding("UTF-8");
 
-<script>
-    $(".view").hide();
-    $(".title").click(function (){
-        $(this).next().slideToggle();
-    })
-</script>
+    String name = request.getParameter("name");
+    String pass = request.getParameter("pass");
+    String gender = request.getParameter("gender");
+    String lic = request.getParameter("lic");
+    String blood = request.getParameter("blood");
+    String[] tec = request.getParameterValues("tec");
+
+    lic = lic == null ? "없음" : "있음";
+%>
+<body>
+<div>
+    이름 : <%=name%> <br>
+    비번 : <%=pass%> <br>
+    성별 : <%=gender%> <br>
+    운전면허 : <%=lic%> <br>
+    혈액형 : <%=blood%> <br>
+    기술 : <%
+    if (tec == null || tec.length == 0) {
+        out.print("없음");
+    }else {
+        for (int i = 0; i < tec.length; i++) {
+            out.print(tec[i] + " ");
+        }
+    }
+
+
+
+%>
+</div>
+
 </body>
 </html>
