@@ -59,23 +59,39 @@
             <td colspan="2" align="center">
                 <button type="button" class="btn btn-outline-danger btn-sm"
                         style="width: 80px;"
-                        onclick="location.href='shoplist.jsp'">목록</button>
+                        onclick="location.href='shoplist.jsp'">목록
+                </button>
 
                 <button type="button" class="btn btn-outline-danger btn-sm"
                         style="width: 80px;"
-                        onclick="location.href='shopEdit.jsp?id=<%=shopDto.getId()%>'">수정</button>
+                        onclick="location.href='shopEdit.jsp?id=<%=shopDto.getId()%>'">수정
+                </button>
 
                 <button type="button" class="btn btn-outline-danger btn-sm"
                         style="width: 80px;"
-                        onclick="location.href='shopDel.jsp?id=<%=shopDto.getId()%>'">삭제</button>
+                        onclick="location.href='shopDel.jsp?id=<%=shopDto.getId()%>'">삭제
+                </button>
 
                 <button type="button" class="btn btn-outline-danger btn-sm"
                         style="width: 80px;"
-                        onclick="location.href='insertForm.jsp'">상품추가</button>
+                        id="btn-del">삭제1
+                </button>
+
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                        style="width: 80px;"
+                        onclick="location.href='insertForm.jsp'">상품추가
+                </button>
             </td>
         </tr>
     </table>
 </div>
+<script>
+    document.getElementById("btn-del").addEventListener("click", function () {
+            if (confirm("<%=id%>번 상품을 정말 삭제 하시겠습니까?")) {
+                location.href='shopDel.jsp?id=<%=shopDto.getId()%>'
+            }
+    })
 
+</script>
 </body>
 </html>

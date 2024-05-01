@@ -31,8 +31,6 @@ public class ShopDao {
             ps.setString(5,dto.getPhoto());
 
             ps.executeUpdate();
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -128,6 +126,8 @@ public class ShopDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            db.dbClose(ps, conn);
         }
     }
 
@@ -144,6 +144,10 @@ public class ShopDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            db.dbClose(ps, conn);
         }
     }
+
+
 }
