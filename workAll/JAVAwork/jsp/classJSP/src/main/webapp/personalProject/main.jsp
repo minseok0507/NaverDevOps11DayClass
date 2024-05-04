@@ -19,7 +19,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined:wght@400;500;600;700&display=swap">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="main.css?asd">
     <link rel="icon" href="icon/outline_calendar_month_black_24dp.png">
     <title>Calender</title>
     <%
@@ -66,10 +66,6 @@
 </head>
 <body>
 <div class="main-container">
-    <input type="hidden" id="year" style="display: none;" value="<%=year%>">
-    <input type="hidden" id="month" style="display: none;" value="<%=month%>">
-    <input type="hidden" id="day" style="display: none;" value="<%=day%>">
-
     <div class="top">
         <div class="logo">
             <a href="main.jsp">
@@ -251,8 +247,8 @@
 
 
         <div class="top-button">
-            <button>달력</button>
-            <button>일정</button>
+            <button onclick="location.href='main.jsp?year=<%=year%>&month=<%=month%>'">달력</button>
+            <button onclick="location.href='my-plan.jsp?year=<%=year%>&month=<%=month%>'">일정</button>
         </div>
     </div>
 
@@ -269,143 +265,143 @@
         </tr>
         <tr class="big-week">
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
-                <%--                <div class="event">--%>
-                <%--                    <div class="event-content">끼얐호</div>--%>
-                <%--                </div>--%>
+                <div class="big-day"><span class="big-day-num"></span></div>
+                <%--                                <div class="event">--%>
+                <%--                                    <div class="event-content">끼얐호</div>--%>
+                <%--                                </div>--%>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
-            </td>
-        </tr>
-        <tr class="big-week">
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
         </tr>
         <tr class="big-week">
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
-            </td>
-        </tr>
-        <tr class="big-week">
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
-            </td>
-            <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
         </tr>
         <tr class="big-week">
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
         </tr>
         <tr class="big-week">
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
             <td>
-                <div class="big-day">1</div>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+        </tr>
+        <tr class="big-week">
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+        </tr>
+        <tr class="big-week">
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
+            </td>
+            <td>
+                <div class="big-day"><span class="big-day-num"></span></div>
             </td>
         </tr>
     </table>
@@ -415,6 +411,11 @@
     <div class="popup-background" id="close"></div>
     <div class="popup-content">
         <form action="eventAction.jsp">
+            <input type="hidden" name="year" id="year" style="display: none;" value="<%=year%>">
+            <input type="hidden" name="month" id="month" style="display: none;" value="<%=month%>">
+            <input type="hidden" name="day" id="day" style="display: none;" value="<%=day%>">
+            <input type="hidden" name="id" id="id">
+
             <div>
                 <label for="title">
                     <span>제목</span>
@@ -450,19 +451,141 @@
 </div>
 
 
-<script src="main.js"></script>
+<div class="popup-update">
+    <div class="popup-background" id="close-update"></div>
+    <div class="popup-content">
+        <form action="eventActionUpdate.jsp">
+            <input type="hidden" name="id" id="id-update">
+
+            <div>
+                <label for="title">
+                    <span>제목</span>
+                    <input type="text" name="title" id="title-update" required class="form-control form-control-sm">
+                </label>
+                <br>
+                <label for="startDate">
+                    <span>시작시간</span>
+                    <input type="datetime-local" name="startDate" id="startDate-update"
+                           class="form-control form-control-sm">
+                </label>
+                <br>
+                <label for="endDate">
+                    <span>끝 시간</span>
+                    <input type="datetime-local" name="endDate" id="endDate-update"
+                           class="form-control form-control-sm">
+                </label>
+                <br>
+                <label for="information">
+                    <span>설명</span>
+                    <textarea name="information" id="information-update" cols="30" rows="5"
+                              class="form-control form-control-sm"></textarea>
+                </label>
+                <br>
+                <label for="user-id">
+                    <span>아이디</span>
+                    <input type="text" name="user-id" id="user-id-update" required class="form-control form-control-sm">
+                </label>
+            </div>
+            <div class="popup-save">
+                <button class="btn">수정</button>
+            </div>
+
+            <div class="popup-del">
+                <button class="btn">삭제</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="jsFuntion.js"></script>
+<script src="main.js?ㅁㄴㅇㄹ"></script>
 
 <script>
+    var events = [
+        <% for (int i = 0; i < events.size(); i++) { %>
+        {
+            "getDay": <%= events.get(i).getStartDate().getDate() %>,
+            "id": <%= events.get(i).getId() %>,
+            "title": "<%= events.get(i).getTitle() %>",
+            "startDate": "<%= events.get(i).getStartDate().toString() %>",
+            "endDate": "<%= events.get(i).getEndDate().toString() %>",
+            "information": "<%= events.get(i).getInformation() %>",
+            "userId": "<%= events.get(i).getUserId() %>"
+        }<%= i < events.size() - 1 ? "," : "" %>
+        <% } %>
+    ];
+
+
     var eventsIndex = [];
+    var idData = [];
+    var titleData = [];
+    var startData = [];
+    var endData = [];
+    var informationData = [];
+    var userIdData = [];
 
-    <% for (int i = 0; i < events.size(); i++) { %>
-    eventsIndex.push(<%=events.get(i).getStartDate().getDate()%>);
-    <% } %>
+    events.forEach(function (event) {
+        eventsIndex.push(event.getDay);
+        idData.push(event.id);
+        titleData.push(event.title);
+        startData.push(event.startDate);
+        endData.push(event.endDate);
+        if (event.information !== null) {
+            informationData.push(event.information);
+        } else {
+            informationData.push('');
+        }
+        userIdData.push(event.userId);
+    });
 
-    let enableDay = document.getElementsByClassName("enabled");
+
+    for (let i = 0; i < eventsIndex.length; i++) {
+        let eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+
+        let eventContentDiv = document.createElement('div');
+        eventContentDiv.classList.add('event-content');
+        eventContentDiv.textContent = titleData[i];
+
+        eventDiv.appendChild(eventContentDiv);
+        enabled[eventsIndex[i] - 1].appendChild(eventDiv);
+    }
+
+    let elementEvent = document.querySelectorAll('.event-content');
+
+    let closeUpdate = document.getElementById('close-update');
+    let popupUpdate = document.getElementsByClassName("popup-update")[0];
+
+    closeUpdate.addEventListener('click', function () {
+        // 클릭 시 실행되는 코드
+        animateClose(popupUpdate);
+    });
+
+    let idInputUpdate = document.getElementById("id-update");
+    let titleInputUpdate = document.getElementById("title-update");
+    let startDateInputUpdate = document.getElementById("startDate-update");
+    let endDateInputUpdate = document.getElementById("endDate-update");
+    let informationInputUpdate = document.getElementById("information-update");
+    let userIdInputUpdate = document.getElementById("user-id-update");
+
+    for (let i = 0; i < elementEvent.length; i++) {
+        elementEvent[i].addEventListener('click', function () {
+            event.stopPropagation();
+            idInputUpdate.value = idData[i];
+            titleInputUpdate.value = titleData[i];
+            startDateInputUpdate.value = startData[i];
+            endDateInputUpdate.value = endData[i];
+            informationInputUpdate.value = informationData[i];
+            userIdInputUpdate.value = userIdData[i];
+
+            animateOpen(popupUpdate);
+        })
+    }
 
 
 </script>
+
 
 </body>
 </html>

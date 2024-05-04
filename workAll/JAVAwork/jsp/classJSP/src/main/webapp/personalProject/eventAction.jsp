@@ -19,6 +19,11 @@
     String information = request.getParameter("information");
     String userId = request.getParameter("user-id");
 
+    String year = request.getParameter("year");
+    String month = request.getParameter("month");
+    String day = request.getParameter("day");
+
+
     Timestamp startDate = Timestamp.valueOf(startDateParam);
     Timestamp endDate = Timestamp.valueOf(endDateParam);
 
@@ -26,5 +31,5 @@
     EventDto eventDto = new EventDto(title, startDate, endDate, information, userId);
     eventDao.insertEvent(eventDto);
 
-    response.sendRedirect("main.jsp");
+    response.sendRedirect("main.jsp?year="+year+"&month="+month);
 %>

@@ -39,7 +39,7 @@ public class EventDao {
 
     public List<EventDto> getEvents() {
         Connection conn = db.getConnection();
-        String sql = "select * from events order by id desc";
+        String sql = "select * from events order by start_date desc";
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<EventDto> events = new ArrayList<>();
@@ -70,7 +70,7 @@ public class EventDao {
 
     public List<EventDto> getEventsByYearMonth(String yearMonth) {
         Connection conn = db.getConnection();
-        String sql = "SELECT * FROM events WHERE DATE_FORMAT(start_date, '%Y-%m') = ?";
+        String sql = "SELECT * FROM events WHERE DATE_FORMAT(start_date, '%Y-%m') = ? order by start_date";
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<EventDto> events = new ArrayList<>();
@@ -96,5 +96,26 @@ public class EventDao {
         }
 
         return events;
+    }
+
+    public void updateEvent(EventDto event) {
+        Connection conn = db.getConnection();
+        String sql = "UPDATE events SET title = ?, start_date = ?, end_date = ?, information = ?, user_id = ? WHERE id = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, event.getTitle());
+            ps.setTimestamp(2, event.getStartDate());
+            ps.setTimestamp(3, event.getEndDate());
+            ps.setString(4, event.getInformation());
+            ps.setString(5, event.getUserId());
+            ps.setInt(6, event.getId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            db.dbClose(ps, conn);
+        }
     }
 }
