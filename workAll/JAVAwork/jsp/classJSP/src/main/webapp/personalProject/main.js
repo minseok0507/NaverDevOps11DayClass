@@ -1,6 +1,7 @@
 let getPageYear = document.getElementById('year').value;
 let getPageMonth = document.getElementById('month').value;
 
+
 let pageStartDate = new Date(getPageYear, getPageMonth - 1, 1);
 let pageLastDate = new Date(getPageYear, getPageMonth, 0);
 let pageBeforeDate = new Date(getPageYear, getPageMonth - 1, 0);

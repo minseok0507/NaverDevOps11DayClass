@@ -1,12 +1,12 @@
 
-function drawCalendar(year, month, day) {
+function drawCalendar(iyear, imonth, iday) {
     // 현재 날짜 및 시간 정보 가져오기
-    let currentDate = new Date(year, month - 1, day);
-
+    let currentDate = new Date(iyear, imonth, iday);
+    
     // 오늘 연도, 월, 일, 요일 정보 추출
-    year = currentDate.getFullYear();
-    month = currentDate.getMonth();
-    day = currentDate.getDate();
+    let year = currentDate.getFullYear();
+    let month = currentDate.getMonth() - 1;
+    let day = currentDate.getDate();
 
     let todayStartDay = new Date(year, month, 1);
     let todayStartDayOfWeek = todayStartDay.getDay(); // 0(일요일) ~ 6(토요일)

@@ -19,13 +19,14 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined:wght@400;500;600;700&display=swap">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="main.css?asd">
+    <link rel="stylesheet" href="main.css?asdfff">
     <link rel="icon" href="icon/outline_calendar_month_black_24dp.png">
     <title>Calender</title>
     <%
         String getParamYear = request.getParameter("year");
         String getParamMonth = request.getParameter("month");
         String getParamDay = request.getParameter("day");
+
 
         Date toDate = new Date();
         int year = 0;
@@ -50,14 +51,14 @@
             day = Integer.parseInt(getParamDay);
         }
 
-        if (year < 1900 || month < 1 || day < 1) {
+
+        if (year < 1900 || month < 1) {
             year = toDate.getYear() + 1900;
             month = toDate.getMonth() + 1;
-            day = toDate.getDay();
         }
 
-        String formetMonth = String.format("%02d", month);
-        String yearMonth = year + "-" + formetMonth;
+        String formatMonth = String.format("%02d", month);
+        String yearMonth = year + "-" + formatMonth;
         EventDao eventDao = new EventDao();
 
         List<EventDto> events = eventDao.getEventsByYearMonth(yearMonth);
@@ -272,9 +273,6 @@
             </td>
             <td>
                 <div class="big-day"><span class="big-day-num"></span></div>
-                <%--                                <div class="event">--%>
-                <%--                                    <div class="event-content">끼얐호</div>--%>
-                <%--                                </div>--%>
             </td>
             <td>
                 <div class="big-day"><span class="big-day-num"></span></div>
@@ -443,8 +441,8 @@
                     <input type="text" name="user-id" id="user-id" required class="form-control form-control-sm">
                 </label>
             </div>
-            <div class="popup-save">
-                <button class="btn">저장</button>
+            <div class="popup-save popup-button">
+                <button class="btn btn-outline-dark"><span>저장</span></button>
             </div>
         </form>
     </div>
@@ -454,52 +452,59 @@
 <div class="popup-update">
     <div class="popup-background" id="close-update"></div>
     <div class="popup-content">
-        <form action="eventActionUpdate.jsp">
-            <input type="hidden" name="id" id="id-update">
+        <form method="post">
+            <input type="hidden" name="id-update" id="id-update">
 
             <div>
-                <label for="title">
+                <label for="title-update">
                     <span>제목</span>
-                    <input type="text" name="title" id="title-update" required class="form-control form-control-sm">
+                    <input type="text" name="title-update" id="title-update" required
+                           class="form-control form-control-sm">
                 </label>
                 <br>
-                <label for="startDate">
+                <label for="startDate-update">
                     <span>시작시간</span>
-                    <input type="datetime-local" name="startDate" id="startDate-update"
+                    <input type="datetime-local" name="startDate-update" id="startDate-update"
                            class="form-control form-control-sm">
                 </label>
                 <br>
-                <label for="endDate">
+                <label for="endDate-update">
                     <span>끝 시간</span>
-                    <input type="datetime-local" name="endDate" id="endDate-update"
+                    <input type="datetime-local" name="endDate-update" id="endDate-update"
                            class="form-control form-control-sm">
                 </label>
                 <br>
-                <label for="information">
+                <label for="information-update">
                     <span>설명</span>
-                    <textarea name="information" id="information-update" cols="30" rows="5"
+                    <textarea name="information-update" id="information-update" cols="30" rows="5"
                               class="form-control form-control-sm"></textarea>
                 </label>
                 <br>
-                <label for="user-id">
+                <label for="user-id-update">
                     <span>아이디</span>
-                    <input type="text" name="user-id" id="user-id-update" required class="form-control form-control-sm">
+                    <input type="text" name="user-id-update" id="user-id-update" required
+                           class="form-control form-control-sm">
                 </label>
             </div>
-            <div class="popup-save">
-                <button class="btn">수정</button>
+            <div class="popup-save popup-button">
+                <button class="btn btn-outline-dark"
+                        formaction="eventActionUpdate.jsp"
+                        ><span>수정</span></button>
             </div>
 
-            <div class="popup-del">
-                <button class="btn">삭제</button>
+            <div class="popup-del popup-button">
+                <button class="btn btn-outline-danger"
+                        formaction="eventActionDelete.jsp"
+                        ><span class="material-icons-outlined" style="font-size: 20px;">delete_forever</span>
+                </button>
             </div>
         </form>
     </div>
 </div>
 
 
-<script src="jsFuntion.js"></script>
-<script src="main.js?ㅁㄴㅇㄹ"></script>
+<script src="jsFuntion.js?asdf"></script>
+<script src="main.js?addd"></script>
 
 <script>
     var events = [
@@ -554,8 +559,8 @@
 
     let elementEvent = document.querySelectorAll('.event-content');
 
-    let closeUpdate = document.getElementById('close-update');
     let popupUpdate = document.getElementsByClassName("popup-update")[0];
+    let closeUpdate = document.getElementById('close-update');
 
     closeUpdate.addEventListener('click', function () {
         // 클릭 시 실행되는 코드
@@ -583,6 +588,16 @@
         })
     }
 
+    function updateEvent(event) {
+        event.preventDefault();
+        event.currentTarget.form.submit();
+    }
+
+    function deleteEvent(event) {
+        event.preventDefault();
+        event.currentTarget.form.submit();
+    }
+xx
 
 </script>
 

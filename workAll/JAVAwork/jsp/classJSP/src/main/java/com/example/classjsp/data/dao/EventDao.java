@@ -118,4 +118,20 @@ public class EventDao {
             db.dbClose(ps, conn);
         }
     }
+
+    public void deleteEventById(int id) {
+        Connection conn = db.getConnection();
+        String sql = "DELETE FROM events WHERE id = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            db.dbClose(ps, conn);
+        }
+    }
 }

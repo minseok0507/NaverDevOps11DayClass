@@ -19,9 +19,59 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined:wght@400;500;600;700&display=swap">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="main.css?asd">
+    <link rel="stylesheet" href="main.css?asdffd">
     <link rel="icon" href="icon/outline_calendar_month_black_24dp.png">
     <title>Calender</title>
+
+    <style>
+        .main-container > .table-container {
+            padding: 10px;
+            display: inline-block;
+            width: calc(100% - 200px);
+            height: calc(100% - 50px);
+            text-align: center;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        .main-container > .table-container > table {
+            width: 100%;
+            height: 100%;
+        }
+        .main-container > .table-container > table td {
+            font-size: 15px;
+        }
+        .main-container > .table-container > table tr {
+            border-bottom: 1px solid gray;
+        }
+
+        .big-top td:first-child,
+        .big-top td:last-child {
+            text-align: center;
+        }
+
+        .table-button {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .table-button > button {
+            width: 30px;
+            height: 30px;
+            font-size: 13px;
+            padding: 0;
+        }
+
+        .table-button > button > span {
+            font-size: 15px;
+        }
+
+        .table-event-x{
+            text-align: center;
+            display: none;
+        }
+    </style>
+
     <%
         String getParamYear = request.getParameter("year");
         String getParamMonth = request.getParameter("month");
@@ -50,10 +100,9 @@
             day = Integer.parseInt(getParamDay);
         }
 
-        if (year < 1900 || month < 1 || day < 1) {
+        if (year < 1900 || month < 1) {
             year = toDate.getYear() + 1900;
             month = toDate.getMonth() + 1;
-            day = toDate.getDay();
         }
 
         String formetMonth = String.format("%02d", month);
@@ -254,52 +303,138 @@
             <button onclick="location.href='my-plan.jsp?year=<%=year%>&month=<%=month%>'">일정</button>
         </div>
     </div>
+    <div class="table-container">
+        <table class="" height="50">
+            <tr class="big-top">
+                <th width="70">
 
-    <table class="table">
-        <tr class="big-top">
-            <td width="70">
-                삭제
-            </td>
-            <td>
-                제목
-            </td>
-            <td>
-                시작 날짜
-            </td>
-            <td>
-                끝 날짜
-            </td>
-            <td>
-                설명
-            </td>
-            <td>
-                아이디
-            </td>
-            <td width="70">
-                수정
-            </td>
-        </tr>
-        <%
-            for (int i = 0; i < events.size(); i++) {%>
-        <tr>
-            <td></td>
-            <td><%=events.get(i).getTitle()%></td>
-            <td><%=events.get(i).getStartDate()%></td>
-            <td><%=events.get(i).getEndDate()%></td>
-            <td><%=events.get(i).getInformation()%></td>
-            <td><%=events.get(i).getUserId()%></td>
-            <td></td>
-        </tr>
-        <%}%>
-    </table>
+                </th>
+                <th width="120">
+                    제목
+                </th>
+                <th width="180">
+                    시작 날짜
+                </th>
+                <th width="180">
+                    끝 날짜
+                </th>
+                <th>
+                    설명
+                </th>
+                <th width="100">
+                    아이디
+                </th>
+                <th width="70">
 
+                </th>
+            </tr>
+            <%
+                for (int i = 0; i < events.size(); i++) {%>
+            <tr class="table-events">
+                <td class="table-button">
+                    <button class="btn btn-outline-primary edit-button" style="width: 40px;">수정</button>
+                </td>
+                <td>
+                    <span class="td-id" style="display: none;"><%=events.get(i).getId()%>
+                    </span>
+                    <span class="td-title"><%=events.get(i).getTitle()%>
+                    </span>
+                </td>
+                <td>
+                    <span class="td-start-date"><%=String.format("%tY-%<tm-%<tdT%<tH:%<tM", events.get(i).getStartDate())%>
+                    </span>
+                </td>
+                <td>
+                    <span class="td-end-date"><%=String.format("%tY-%<tm-%<tdT%<tH:%<tM", events.get(i).getEndDate())%>
+                    </span>
+                </td>
+                <td>
+                    <span class="td-info"><%=events.get(i).getInformation()%>
+                    </span>
+                </td>
+                <td>
+                    <span class="td-user-id"><%=events.get(i).getUserId()%>
+                    </span>
+                </td>
+                <td class="table-button delete-button">
+                    <button class="btn btn-outline-danger"><span class="material-icons-outlined">close</span></button>
+                </td>
+            </tr>
+            <%}%>
+            <tr class="table-event-x">
+                <td colspan="100%">
+                    <span>이 달의 일정이 없습니다</span>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
-<script src="jsFuntion.js"></script>
+<div class="popup-update">
+    <div class="popup-background" id="close-update"></div>
+    <div class="popup-content">
+        <form method="post">
+            <input type="hidden" name="id-update" id="id-update">
+
+            <div>
+                <label for="title-update">
+                    <span>제목</span>
+                    <input type="text" name="title-update" id="title-update" required
+                           class="form-control form-control-sm">
+                </label>
+                <br>
+                <label for="startDate-update">
+                    <span>시작시간</span>
+                    <input type="datetime-local" name="startDate-update" id="startDate-update"
+                           class="form-control form-control-sm">
+                </label>
+                <br>
+                <label for="endDate-update">
+                    <span>끝 시간</span>
+                    <input type="datetime-local" name="endDate-update" id="endDate-update"
+                           class="form-control form-control-sm">
+                </label>
+                <br>
+                <label for="information-update">
+                    <span>설명</span>
+                    <textarea name="information-update" id="information-update" cols="30" rows="5"
+                              class="form-control form-control-sm"></textarea>
+                </label>
+                <br>
+                <label for="user-id-update">
+                    <span>아이디</span>
+                    <input type="text" name="user-id-update" id="user-id-update" required
+                           class="form-control form-control-sm">
+                </label>
+            </div>
+            <div class="popup-save popup-button">
+                <button class="btn btn-outline-dark"
+                        formaction="eventActionUpdate.jsp"
+                ><span>수정</span></button>
+            </div>
+
+            <div class="popup-del popup-button">
+                <button class="btn btn-outline-danger"
+                        formaction="eventActionDelete.jsp"
+                ><span class="material-icons-outlined" style="font-size: 20px;">delete_forever</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="jsFuntion.js?dsa"></script>
 
 
 <script>
+    let tableEvent = document.getElementsByClassName("table-events");
+    let tableNotEvent = document.getElementsByClassName("table-event-x")[0];
+    if (tableEvent.length === 0){
+        tableNotEvent.style.display = "table-row";
+    }
+
     let todayYear = document.getElementById('year').value;
     let todayMonth = document.getElementById('month').value;
     let todayDay = document.getElementById('day').value;
@@ -331,6 +466,52 @@
             });
         }
     })
+
+    let popup = document.getElementsByClassName("popup-update")[0];
+
+    let editButtonArr = document.getElementsByClassName("edit-button");
+    let deleteButtonArr = document.getElementsByClassName("delete-button");
+
+    let idArr = document.getElementsByClassName("td-id");
+    let titleArr = document.getElementsByClassName("td-title");
+    let startDateArr = document.getElementsByClassName("td-start-date");
+    let endDateArr = document.getElementsByClassName("td-end-date");
+    let infoArr = document.getElementsByClassName("td-info");
+    let userIdArr = document.getElementsByClassName("td-user-id");
+
+
+    let idInputUpdate = document.getElementById("id-update");
+    let titleInputUpdate = document.getElementById("title-update");
+    let startDateInputUpdate = document.getElementById("startDate-update");
+    let endDateInputUpdate = document.getElementById("endDate-update");
+    let informationInputUpdate = document.getElementById("information-update");
+    let userIdInputUpdate = document.getElementById("user-id-update");
+
+    for (let i = 0; i < editButtonArr.length; i++) {
+        editButtonArr[i].addEventListener('click', function () {
+            idInputUpdate.value = idArr[i].textContent;
+            titleInputUpdate.value = titleArr[i].textContent;
+
+            const startDateStr = startDateArr[i].textContent;
+            const endDateStr = endDateArr[i].textContent;
+
+            startDateInputUpdate.value = "" + startDateStr + "";
+            endDateInputUpdate.value = "" + endDateStr + "";
+
+            informationInputUpdate.value = infoArr[i].textContent;
+            userIdInputUpdate.value = userIdArr[i].textContent;
+
+            animateOpen(popup);
+        })
+    }
+
+    let closeUpdate = document.getElementById('close-update');
+
+    closeUpdate.addEventListener('click', function () {
+        // 클릭 시 실행되는 코드
+        animateClose(popup);
+    });
+
 </script>
 
 
