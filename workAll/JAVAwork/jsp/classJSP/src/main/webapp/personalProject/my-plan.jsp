@@ -19,7 +19,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined:wght@400;500;600;700&display=swap">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="main.css?asdffd">
+    <link rel="stylesheet" href="main.css?gjdj">
     <link rel="icon" href="icon/outline_calendar_month_black_24dp.png">
     <title>Calender</title>
 

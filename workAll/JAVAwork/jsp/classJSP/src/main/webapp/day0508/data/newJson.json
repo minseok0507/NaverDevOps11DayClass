@@ -1,0 +1,74 @@
+[
+  {
+    "shopidx": "10",
+    "scolor": "#458fd3",
+    "sname": "털모자",
+    "sphoto": "..\/shop\/2.jpg",
+    "scount": 4,
+    "sprice": 18000,
+    "writeday": "2024-05-08"
+  },
+  {
+    "shopidx": "9",
+    "scolor": "#dc1818",
+    "sname": "단화",
+    "sphoto": "..\/shop\/15.jpg",
+    "scount": 4,
+    "sprice": 45000,
+    "writeday": "2024-05-08"
+  },
+  {
+    "shopidx": "8",
+    "scolor": "#c674ec",
+    "sname": "청투피스",
+    "sphoto": "..\/shop\/27.jpg",
+    "scount": 4,
+    "sprice": 39000,
+    "writeday": "2024-05-08"
+  },
+  {
+    "shopidx": "7",
+    "scolor": "#0e5858",
+    "sname": "목도리",
+    "sphoto": "..\/shop\/9.jpg",
+    "scount": 3,
+    "sprice": 290000,
+    "writeday": "2024-05-08"
+  },
+  {
+    "shopidx": "5",
+    "scolor": "#daf1f1",
+    "sname": "레이스원피스",
+    "sphoto": "..\/shop\/28.jpg",
+    "scount": 2,
+    "sprice": 56000,
+    "writeday": "2024-04-29"
+  },
+  {
+    "shopidx": "3",
+    "scolor": "#f2d491",
+    "sname": "자켓",
+    "sphoto": "..\/shop\/31.jpg",
+    "scount": 2,
+    "sprice": 34000,
+    "writeday": "2024-04-29"
+  },
+  {
+    "shopidx": "2",
+    "scolor": "#07500f",
+    "sname": "나시티",
+    "sphoto": "..\/shop\/7.jpg",
+    "scount": 2,
+    "sprice": 11000,
+    "writeday": "2024-04-29"
+  },
+  {
+    "shopidx": "1",
+    "scolor": "#df43f4",
+    "sname": "여성단화",
+    "sphoto": "..\/shop\/14.jpg",
+    "scount": 3,
+    "sprice": 23000,
+    "writeday": "2024-04-29"
+  }
+]

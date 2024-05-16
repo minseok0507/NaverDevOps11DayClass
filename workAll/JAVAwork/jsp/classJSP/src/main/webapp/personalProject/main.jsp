@@ -27,6 +27,8 @@
         String getParamMonth = request.getParameter("month");
         String getParamDay = request.getParameter("day");
 
+        
+
 
         Date toDate = new Date();
         int year = 0;
@@ -52,7 +54,7 @@
         }
 
 
-        if (year < 1900 || month < 1) {
+        if (year < 1900) {
             year = toDate.getYear() + 1900;
             month = toDate.getMonth() + 1;
         }
@@ -452,7 +454,7 @@
 <div class="popup-update">
     <div class="popup-background" id="close-update"></div>
     <div class="popup-content">
-        <form method="post">
+        <form method="post" id="update-form">
             <input type="hidden" name="id-update" id="id-update">
 
             <div>
@@ -494,7 +496,11 @@
 
             <div class="popup-del popup-button">
                 <button class="btn btn-outline-danger"
-                        formaction="eventActionDelete.jsp"
+                        onclick="if (confirm('정말로 삭제하시겠습니까?')){
+                            document.getElementById('update-form').action = 'eventActionDelete.jsp';
+                        }else {
+                            event.stopPropagation();
+                        }"
                         ><span class="material-icons-outlined" style="font-size: 20px;">delete_forever</span>
                 </button>
             </div>
@@ -507,6 +513,9 @@
 <script src="main.js?addd"></script>
 
 <script>
+    function popEventDelete(event){
+        confirm("정말로 삭제하시겠습니까?")
+    }
     var events = [
         <% for (int i = 0; i < events.size(); i++) { %>
         {

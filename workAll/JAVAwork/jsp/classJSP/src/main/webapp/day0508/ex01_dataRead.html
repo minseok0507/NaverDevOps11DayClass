@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=East+Sea+Dokdo&family=Jua&family=Gaegu&family=Gamja+Flower&family=Pacifico&family=Single+Day&display=swap"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <style>
+        body * {
+            font-family: 'Jua';
+        }
+    </style>
+
+    <title>Title</title>
+</head>
+<body>
+<button id="btn1">사원데이터 읽기(xml)</button>
+<button id="btn2">parson 데이터 읽기(json)</button>
+<hr>
+<div class="result"></div>
+<script>
+    // $("#btn1").click(function () {
+    //     $("div.result").html("");
+    //     $.ajax({
+    //         type: "get",
+    //         url: "./data/sawonData.xml",
+    //         dataType: "xml",
+    //         success: function (data) {
+    //             $(data).find("sawon").each(function (idx, ele){
+    //                 let s = $(ele);
+    //                 let w = `
+    //                 사원번호 : ${s.attr("no")}<br>
+    //                 부서명 : ${s.find("buseo").text()}<br>
+    //                 월급여 : ${s.find("pay").text()}원 <br>
+    //                 수 당 : ${s.find("pay").attr("sudang")}원
+    //                 <hr>
+    //                 `;
+    //                 $("div.result").append(w);
+    //             })
+    //         }
+    //     })
+    // });
+
+    document.getElementById("btn1").addEventListener("click", function () {
+        document.getElementsByClassName("result")[0].innerHTML = "";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "./data/sawonData.xml", true);
+        xhr.responseType = "xml";
+        xhr.onload = function () {
+            var data = xhr.responseXML;
+            var sawon = data.getElementsByTagName("sawon");
+            for (let i = 0; i < sawon.length; i++) {
+                var s = sawon[i];
+                var w = `
+                    사원번호 : ${s.getAttribute("no")}<br>
+                    부서명 : ${s.getElementsByTagName("buseo")[0].textContent}<br>
+                    월급여 : ${s.getElementsByTagName("pay")[0].textContent}원 <br>
+                    수 당 : ${s.getElementsByTagName("pay")[0].getAttribute("sudang")}원
+                    <hr>
+                `;
+                document.querySelector("div.result").innerHTML += w;
+            }
+            
+        }
+        xhr.send();
+    })
+
+
+    $("#btn1").click(function () {
+        $("div.result").html("");
+        $.ajax({
+            type: "get",
+            url: "./data/parsonData.json",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (idx, ele) {
+                    let s = `
+                    이름 : ${ele.name}<br>
+                    `;
+                    if (ele.hobby == null) s += "취미 : 없음<br>";
+                    else {
+                        s += "취미 : ";
+                        $.each(ele.hobby, function (i, h) {
+                            s += (i + 1) + ":" + h + "&nbsp;";
+                        })
+                        s += "<br>";
+                    }
+
+                    if (ele.addr == null) s += "주소 : 없음<br>";
+                    else {
+                        s += "주소 : " + ele.addr + "<br>";
+                    }
+
+                    if (ele.hp == null) s += "휴대폰 : 없음<br>";
+                    else {
+                        s += "휴대폰 : " + ele.hp + "<br>";
+                    }
+
+
+                    s += "<hr>";
+
+                    $("div.result").append(s);
+                });
+            }
+        })
+    });
+
+    // document.getElementById("btn2").addEventListener("click", function () {
+    //     document.getElementsByClassName("result")[0].innerHTML = "";
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("GET", "/data/personData.json", true);
+    //     xhr.responseType = "json";
+    //
+    //     xhr.onload = function () {
+    //         var data = xhr.responseXML;
+    //         var person = data.getElementsByTagName("person");
+    //         for (let i = 0; i < sawon.length; i++) {
+    //             var s = sawon[i];
+    //             var w = `
+    //                 이 름 : ${s.getAttribute("no")}<br>
+    //                 부서명 : ${s.getElementsByTagName("buseo")[0].textContent}<br>
+    //                 월급여 : ${s.getElementsByTagName("pay")[0].textContent}원 <br>
+    //                 수 당 : ${s.getElementsByTagName("pay")[0].getAttribute("sudang")}원
+    //                 <hr>
+    //             `;
+    //             document.querySelector("div.result").innerHTML += w;
+    //         }
+    //     }
+    // })
+</script>
+
+</body>
+</html>

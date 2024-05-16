@@ -43,7 +43,7 @@ public class SawonDao {
 
     public List<SawonDto> selectAllSawon(){
         List<SawonDto> list = new ArrayList<>();
-        String sql = "select * from mysawon order by num desc";
+        String sql = "select * from mysawon order by num";
 
         Connection con = db.getConnection();
         PreparedStatement ps = null;
@@ -202,6 +202,36 @@ public class SawonDao {
                 map.put("age", age);
 
                 list.add(map);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+    public List<SawonDto> findAllSawonByBuseo(String buseo){
+        List<SawonDto> list = new ArrayList<>();
+        String sql = "select * from mysawon where buseo = ?";
+        Connection con = db.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, buseo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                SawonDto dto = new SawonDto();
+                dto.setNum(rs.getInt("num"));
+                dto.setName(rs.getString("name"));
+                dto.setBuseo(rs.getString("buseo"));
+                dto.setAge(rs.getInt("age"));
+                dto.setAddr(rs.getString("addr"));
+                dto.setPhoto(rs.getString("photo"));
+                dto.setGender(rs.getString("gender"));
+                dto.setBirthday(rs.getString("birthday"));
+                list.add(dto);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

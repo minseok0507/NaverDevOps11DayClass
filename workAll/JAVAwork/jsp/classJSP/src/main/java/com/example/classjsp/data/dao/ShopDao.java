@@ -13,7 +13,7 @@ import java.util.List;
 public class ShopDao {
     DBconnect db = new DBconnect();
 
-    public void insertShop(ShopDto dto){
+    public void insertShop(ShopDto dto) {
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -22,24 +22,68 @@ public class ShopDao {
 
         conn = db.getConnection();
 
-        try{
+        try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, dto.getName());
             ps.setInt(2, dto.getPrice());
-            ps.setInt(3,dto.getCount());
-            ps.setString(4,dto.getColor());
-            ps.setString(5,dto.getPhoto());
+            ps.setInt(3, dto.getCount());
+            ps.setString(4, dto.getColor());
+            ps.setString(5, dto.getPhoto());
 
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             db.dbClose(ps, conn);
         }
     }
 
 
-    public List<ShopDto> selectAll(){
+    public List<ShopDto> getShopDataAll(int idx) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ShopDto> list = new ArrayList<>();
+        String sql = "";
+        if (idx == 1) {
+            sql = "select * from myshop order by id";
+        } else if (idx == 2) {
+            sql = "select * from myshop order by price";
+        } else if (idx == 3) {
+            sql = "select * from myshop order by price desc";
+        } else if (idx == 4) {
+            sql = "select * from myshop order by name";
+        }
+        conn = db.getConnection();
+        
+        try {
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ShopDto dto = new ShopDto();
+                dto.setId(rs.getLong("id"));
+                dto.setName(rs.getString("name"));
+                dto.setPrice(rs.getInt("price"));
+                dto.setCount(rs.getInt("count"));
+                dto.setColor(rs.getString("color"));
+                dto.setPhoto(rs.getString("photo"));
+                dto.setWriteday(rs.getTimestamp("writeday"));
+
+
+                list.add(dto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            db.dbClose(rs, ps, conn);
+        }
+
+
+        return list;
+    }
+
+
+    public List<ShopDto> selectAll() {
         List<ShopDto> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
@@ -66,14 +110,14 @@ public class ShopDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             db.dbClose(rs, ps, conn);
         }
 
         return list;
     }
 
-    public ShopDto selectById(Long id){
+    public ShopDto selectById(Long id) {
         ShopDto dto = new ShopDto();
         Connection conn = null;
         PreparedStatement ps = null;
@@ -105,7 +149,7 @@ public class ShopDao {
         return dto;
     }
 
-    public void update(ShopDto dto){
+    public void update(ShopDto dto) {
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -126,12 +170,12 @@ public class ShopDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             db.dbClose(ps, conn);
         }
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         Connection conn = null;
         PreparedStatement ps = null;
         String sql = "delete from myshop where id = ?";
@@ -144,7 +188,7 @@ public class ShopDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             db.dbClose(ps, conn);
         }
     }

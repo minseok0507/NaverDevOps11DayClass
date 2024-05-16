@@ -38,5 +38,6 @@
     int year = startDate.getYear() + 1900;
     int month = startDate.getMonth() + 1;
 
+
     response.sendRedirect("main.jsp?year="+year+"&month="+month);
 %>

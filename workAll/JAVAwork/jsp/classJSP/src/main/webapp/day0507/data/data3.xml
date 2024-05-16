@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+    <mycar>
+        <title>폭스바켄 핑크</title>
+        <photo>../../img/mycar/mycar13.png</photo>
+    </mycar>
+    <mycar>
+        <title>폭스바켄 노랑</title>
+        <photo>../../img/mycar/mycar11.png</photo>
+    </mycar>
+    <mycar>
+        <title>폭스바켄 몰라</title>
+        <photo>../../img/mycar/mycar15.png</photo>
+    </mycar>
+</data>

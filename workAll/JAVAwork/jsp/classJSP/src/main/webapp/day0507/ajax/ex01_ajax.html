@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Dancing+Script:wght@400..700&family=East+Sea+Dokdo&family=Jua&family=Gaegu&family=Gamja+Flower&family=Pacifico&family=Single+Day&display=swap"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <style>
+        body * {
+            font-family: 'Jua';
+        }
+        figure.mycar{
+            float: left;
+            margin: 10px;
+        }
+        figure.mycar img{
+            width: 130px;
+            height: auto;
+
+        }
+        figure.mycar figcaption{
+            text-align: center;
+        }
+    </style>
+
+    <title>Title</title>
+
+</head>
+<body>
+<button id="getDataBtn" class="btn btn-success">json 가져오기</button>
+<button id="getDataBtn2" class="btn btn-success">xml 가져오기</button>
+<br><br>
+<button id="getDataBtn3" class="btn btn-success">json 가져오기(여러 개)</button>
+<button id="getDataBtn4" class="btn btn-success">xml 가져오기(여러 개)</button>
+
+
+<div id="dataContainer"></div>
+
+<script>
+    document.getElementById("getDataBtn").addEventListener("click", function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../data/data2.json", true);
+        xhr.responseType = "json";
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                var jsonData = xhr.response;
+                var name = jsonData.name;
+                var addr = jsonData.addr;
+                var hp = jsonData.hp;
+
+                var s =
+                    "\n이름 : " + name +
+                    "\n주소 : " + addr +
+                    "\n번호 : " + hp;
+
+                document.getElementById("dataContainer").style.backgroundColor = "";
+                document.getElementById("dataContainer").innerText = s;
+            } else {
+                console.error("JSON 데이터를 가져오는 중 오류가 발생했습니다.");
+            }
+        };
+
+        xhr.onerror = function() {
+            console.error("요청을 완료하는 동안 오류가 발생했습니다.");
+        };
+
+        xhr.send();
+    });
+
+
+    document.getElementById("getDataBtn2").addEventListener("click", function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../data/data1.xml", true);
+        xhr.responseType = "document";
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                var xmlData = xhr.responseXML;
+                var name = xmlData.querySelector("name").textContent;
+                var no = xmlData.querySelector("name").getAttribute("no");
+                var color = xmlData.querySelector("name").getAttribute("color");
+                var addr = xmlData.querySelector("addr").textContent;
+                var age = xmlData.querySelector("age").textContent;
+
+                var s =
+                    "번호 : " + no +
+                    "\n이름 : " + name +
+                    "\n주소 : " + addr +
+                    "\n나이 : " + age;
+
+                document.getElementById("dataContainer").style.backgroundColor = color;
+                document.getElementById("dataContainer").innerText = s;
+            } else {
+                console.error("XML 데이터를 가져오는 중 오류가 발생했습니다.");
+            }
+        };
+
+        xhr.onerror = function() {
+            console.error("요청을 완료하는 동안 오류가 발생했습니다.");
+        };
+
+        xhr.send();
+    });
+
+
+    $("#getDataBtn3").click(function () {
+        $("div#dataContainer").html("");
+        $.ajax({
+            type: "get",
+            url: "../data/data4.json",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (idx, ele) {
+                    let s =
+                        `
+                        <img src="${ele.photo}" alt="">
+                        이름 : ${ele.name}
+                        나이 : ${ele.age}
+                        `
+                    $("div#dataContainer").append(s);
+                })
+            }
+
+
+        })
+    });
+
+
+
+    //
+    //
+    //
+    // $("#getDataBtn4").click(function (){
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "../data/data3.xml",
+    //         dataType: "xml",
+    //         success: function (data){
+    //             $("div.dataContainer").empty();
+    //             $(data).find("mycar").each(function (idx, ele){
+    //                 let title = $(ele).find("title").text();
+    //                 let photo = $(ele).find("photo").text();
+    //                 let s =
+    //                     `
+    //                 <figure class="mycar">
+    //                     <img src="${photo}" alt="">
+    //                     <figcaption>${title}</figcaption>
+    //                 </figure>
+    //                 `;
+    //                 $("div.dataContainer").append(s);
+    //             });
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.error("XML 데이터를 가져오는 중 오류가 발생했습니다.");
+    //         }
+    //     });
+    // });
+
+
+
+</script>
+
+</body>
+</html>
