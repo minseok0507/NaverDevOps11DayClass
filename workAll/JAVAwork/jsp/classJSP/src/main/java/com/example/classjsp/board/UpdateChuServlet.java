@@ -12,24 +12,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/board/updateform")
-public class UpdateFormServlet extends HttpServlet {
+@WebServlet("/board/updatechu")
+public class UpdateChuServlet extends HttpServlet {
+    SimpleBoardDao dao=new SimpleBoardDao();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int num = Integer.parseInt(request.getParameter("num"));
-        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        // TODO Auto-generated method stub
+        //num,currentPage 를 읽는다
+        int num=Integer.parseInt(request.getParameter("num"));
 
-        SimpleBoardDao dao = new SimpleBoardDao();
-        SimpleBoardDto dto = dao.getData(num);
+        dao.updateChu(num);
 
-        request.setAttribute("dto", dto);
-        request.setAttribute("currentPage", currentPage);
+        int chu = dao.getData(num).getChu();
+        String s = "{\"chu\":"+chu+"}";
 
-        RequestDispatcher rd=request.getRequestDispatcher("../day0514/updateform.jsp");
+        request.setAttribute("chu", s);
+
+        RequestDispatcher rd=request.getRequestDispatcher("../day0514/jsonChu.jsp");
         rd.forward(request, response);
     }
-
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         doGet(request, response);

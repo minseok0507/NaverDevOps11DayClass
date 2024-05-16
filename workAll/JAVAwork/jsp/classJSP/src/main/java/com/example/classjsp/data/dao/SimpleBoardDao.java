@@ -18,7 +18,7 @@ public class SimpleBoardDao {
     {
         Connection conn=db.getConnection();
         PreparedStatement pstmt=null;
-        String sql="insert into simpleboard (writer,avata,subject,content,writeday) values (?,?,?,?,now())";
+        String sql="insert into simpleboard (writer,avata,subject,content,writeday,readcount,chu) values (?,?,?,?,now(),0,0)";
 
         try {
             pstmt=conn.prepareStatement(sql);
