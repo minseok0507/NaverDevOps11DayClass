@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    MyInfo-->
+    <bean id="my" class="study.ex2.MyInfo">
+        <constructor-arg value="손미나"/>
+        <constructor-arg value="23"/>
+        <constructor-arg>
+            <value>서울시 강남구 도곡동</value>
+        </constructor-arg>
+    </bean>
+
+<!--    Student-->
+    <bean id="stu" class="study.ex2.Student">
+<!--        <constructor-arg ref="my"/>-->
+        <constructor-arg>
+            <ref bean="my"/>
+        </constructor-arg>
+        <property name="schoolName" value="중산초"/>
+    </bean>
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.MemberCommentDao">
+    <resultMap id="commentResultMap" type="member.dto.CommentDto">
+        <id property="commentId" column="comment_id" />
+        <result property="memberNum" column="member_num" />
+        <result property="commentText" column="comment_text" />
+        <result property="commentDate" column="comment_date" />
+        <result property="commentUser" column="comment_user" />
+    </resultMap>
+
+    <select id="getCommentsByMemberNum" parameterType="int" resultMap="commentResultMap">
+        SELECT *
+        FROM member_comments
+        WHERE member_num = #{memberNum}
+    </select>
+
+    <insert id="insertComment" parameterType="member.dto.CommentDto">
+        INSERT INTO member_comments (member_num, comment_text, comment_date, comment_user)
+        VALUES (#{memberNum}, #{commentText}, now(), #{commentUser})
+    </insert>
+
+    <update id="updateComment" parameterType="member.dto.CommentDto">
+        UPDATE member_comments
+        SET comment_text = #{commentText},
+            comment_date = #{commentDate},
+            comment_user = #{commentUser}
+        WHERE comment_id = #{commentId}
+    </update>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE
+        FROM member_comments
+        WHERE comment_id = #{commentId}
+    </delete>
+
+</mapper>

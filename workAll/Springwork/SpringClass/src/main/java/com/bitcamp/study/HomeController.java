@@ -1,28 +1,37 @@
 package com.bitcamp.study;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import dto.ShopDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Locale locale, Model model) {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+        return "start";
+    }
 
-		model.addAttribute("date", new Date());
-		
-		return "home";
-	}
-	
+    @GetMapping("/board/list")
+    public String home1(Locale locale, Model model) {
+        model.addAttribute("msg","hihihihih");
+        return "result1";
+    }
+
+    @GetMapping("/guest/list")
+    public ModelAndView home2() {
+        ModelAndView mav = new ModelAndView("guest");
+        mav.addObject("msg","hihihihih");
+        mav.setViewName("result2");
+        
+        return mav;
+    }
+
 }
