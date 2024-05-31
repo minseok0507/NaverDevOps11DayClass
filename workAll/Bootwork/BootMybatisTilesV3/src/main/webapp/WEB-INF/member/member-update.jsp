@@ -3,7 +3,7 @@
   Created by IntelliJ IDEA.
   User: minseok
   Date: 24. 5. 24.
-  Time: 오전 11:10
+  Time: 오후 10:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,12 +18,6 @@
     <style>
         body * {
             font-family: 'Jua';
-
-        }
-
-        form {
-            display: flex;
-            justify-content: center;
         }
 
         .id_ok {
@@ -38,11 +32,13 @@
     </style>
     <title>Title</title>
     <script>
-        let duplication = false;
+        let duplication = true;
     </script>
 </head>
 <body>
-<form action="<c:url value="/member/insert"/>" method="post" onsubmit="form()" enctype="multipart/form-data">
+
+<form action="<c:url value="/member/update/form-action"/>" method="post" onsubmit="form()" enctype="multipart/form-data">
+    <input type="hidden" name="num" id="num" value="${member.num}">
     <table class="table table-bordered" style="width: 400px;">
         <caption align="top">
             <h3><b>회원 가입</b></h3>
@@ -51,15 +47,15 @@
             <th width="100" class="table-info">이름</th>
             <td colspan="2">
                 <input type="text" name="name" id="name" class="form-control"
-                       required="required">
+                       required="required" value="${member.name}">
             </td>
         </tr>
         <tr>
-            <th width="100" class="table-info">아이디</th>
+            <th width="100" class="table-info" oninput="onInput()">아이디</th>
             <td colspan="2">
                 <div class="input-group">
                     <input type="text" name="myid" id="myid" class="form-control"
-                           required="required">
+                           required="required" value="${member.myid}">
                     &nbsp;
                     <button type="button" class="btn btn-sm btn-danger"
                             id="id-check">중복확인
@@ -71,89 +67,47 @@
             </td>
         </tr>
         <tr>
-            <th width="100" class="table-info">사진</th>
-            <td width="200">
-                <input type="file" name="photofile" id="photofile" class="form-control"
-                       required="required" onchange="preview(this)">
-            </td>
-            <td rowspan="2">
-                <img src="" id="showimg1" style="width: 100%;">
-            </td>
-        </tr>
-        <tr>
-            <th width="100" class="table-info">비밀번호</th>
-            <td width="200">
-                <input type="password" name="passwd" id="passwd" class="form-control"
-                       required="required" maxlength="8">
-            </td>
-        </tr>
-        <tr>
             <th width="100" class="table-info">핸드폰</th>
             <td width="200" colspan="2">
                 <input type="tel" name="hp" id="hp" class="form-control"
                        required="required" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
-                       placeholder="xxx-xxxx-xxxx">
+                       placeholder="xxx-xxxx-xxxx" value="${member.hp}">
             </td>
         </tr>
         <tr>
             <th width="100" class="table-info">이메일</th>
             <td width="200" colspan="2">
                 <input type="email" name="email" id="email" class="form-control"
-                       required="required">
+                       required="required" value="${member.email}">
             </td>
         </tr>
         <tr>
             <th width="100" class="table-info">주소</th>
             <td width="200" colspan="2">
                 <input type="text" name="addr" id="addr" class="form-control"
-                       required="required">
-            </td>
-        </tr>
-        <tr>
-            <th width="100" class="table-info">생년월일</th>
-            <td width="200" colspan="2">
-                <input type="date" name="birthday" id="birthday" class="form-control"
-                       value="2024-01-01">
+                       required="required" value="${member.addr}">
             </td>
         </tr>
         <tr>
             <td colspan="3" align="center">
                 <button type="submit" class="btn btn-outline-danger"
-                        style="width: 100px;">회원가입
+                        style="width: 100px;">수정
                 </button>
-
-                <button type="reset" class="btn btn-outline-danger"
-                        style="width: 100px;">초기화
-                </button>
-
             </td>
         </tr>
     </table>
 </form>
-<script>
-    function preview(tag) {
-        if (tag.files[0]) {
-            let f = tag.files[0];
 
-            if (!f.type.match("image.*")) {
-                alert("이미지 파일만 가능합니다");
-                tag.value = "";
-                return;
-            }
-            if (f) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#showimg1").attr("src", e.target.result);
-                }
-                reader.readAsDataURL(tag.files[0]);
-            }
-        }
+<script>
+    function onInput() {
+        duplication = false;
     }
+
 
     function checkId() {
         var myid = $('#myid').val(); //id값이 "id"인 입력란의 값을 저장
         $.ajax({
-            url: './idCheck', //Controller에서 요청 받을 주소
+            url: '/member/idCheck', //Controller에서 요청 받을 주소
             type: 'post', //POST 방식으로 전달
             data: {myid: myid},
             success: function (cnt) { //컨트롤러에서 넘어온 cnt값을 받는다

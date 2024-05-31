@@ -11,8 +11,8 @@
 <!--		where myid = #{myid}-->
 <!--	</select>-->
 
-	<insert id="insertMember" parameterType="com.example.demo.data.dto.MemberDto">
-        insert into memberdb (name, myid, passwd, addr, hp, email, photo, birthday, registday)
-        values (#{name}, #{myid}, #{passwd}, #{addr}, #{hp}, #{email}, #{photo}, #{birthday}, now())
-    </insert>
+<!--	<insert id="insertMember" parameterType="com.example.demo.data.dto.MemberDto">-->
+<!--        insert into memberdb (name, myid, passwd, addr, hp, email, photo, birthday, registday)-->
+<!--        values (#{name}, #{myid}, #{passwd}, #{addr}, #{hp}, #{email}, #{photo}, #{birthday}, now())-->
+<!--    </insert>-->
 </mapper>

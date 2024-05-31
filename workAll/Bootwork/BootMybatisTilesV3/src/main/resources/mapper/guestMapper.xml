@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.data.mapper.GuestMapperInter">
+    <insert id="insertGuest" parameterType="com.example.demo.data.dto.GuestDto">
+        insert into guestdb (writer, myid, gcontent, writeday)
+        values (#{writer}, #{myid}, #{gcontent}, now())
+
+        <selectKey keyProperty="guestidx" resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    <insert id="insertGuestPhoto" parameterType="com.example.demo.data.dto.GuestPhotoDto">
+        insert into guestphoto (guestidx, photoname)
+        values (#{guestidx}, #{photoname})
+    </insert>
+</mapper>
