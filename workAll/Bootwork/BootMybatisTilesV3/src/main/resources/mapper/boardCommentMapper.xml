@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.data.mapper.BoardCommentMapperInter">
+    <resultMap id="boardCommentResultMap" type="com.example.demo.data.dto.BoardCommentDto">
+        <id property="commentId" column="comment_id"/>
+        <result property="boardId" column="board_id"/>
+        <result property="commentText" column="comment_text"/>
+        <result property="commentDate" column="comment_date"/>
+        <result property="commentUser" column="comment_user"/>
+        <result property="ref" column="ref"/>
+        <result property="step" column="step"/>
+        <result property="level" column="level"/>
+    </resultMap>
+
+
+    <insert id="insertComment" parameterType="com.example.demo.data.dto.BoardCommentDto">
+        INSERT INTO board_comments (
+            board_id, comment_text, comment_user, ref, step, level
+        ) VALUES (
+                     #{boardId}, #{commentText}, #{commentUser}, #{ref}, #{step}, #{level}
+                 )
+    </insert>
+</mapper>

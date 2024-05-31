@@ -19,6 +19,53 @@
    </style>
 </head>
 <body>
-방명록 목록
+<c:if test="${sessionScope.myid != null}">
+   <div class="guest-form-area" style="width: 400px;">
+      <textarea name="gcontent" id="gcontent" cols="30" rows="10" style="width: 100%; height: 120px;" class="form-control"></textarea>
+      <br>
+      <input type="file" id="uploadFiles" name="uploadFiles" multiple required>
+      <button class="btn btn-sm btn-info" id="btn-add-guest">등록</button>
+   </div>
+</c:if>
+<div class="guest-list-area">
+   방명록
+</div>
+
+<script>
+   $(function (){
+      $("#btn-add-guest").click(function (){
+         let gcontent = $("#gcontent").val();
+         if (gcontent === ''){
+            alert("방명록 글을 작성 후 등록하시오")
+            return;
+         }
+         let formData = new FormData();
+         for (let i = 0; i < $("#uploadFiles")[0].files.length; i++) {
+            formData.append("uploadFiles",$("#uploadFiles")[0].files[i]);
+
+         }
+         formData.append("gcontent", gcontent);
+         console.log(formData)
+         $.ajax({
+            type:"post",
+            dataType:"text",
+            url:"/guest/addguest",
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (){
+               guest_list();
+               $("#gcontent").val("");
+               $("#uploadFiles").val("");
+            }
+         })
+      })
+   })
+
+
+   function guest_list(){
+
+   }
+</script>
 </body>
 </html>

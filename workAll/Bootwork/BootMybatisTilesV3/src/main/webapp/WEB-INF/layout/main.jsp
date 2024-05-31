@@ -30,6 +30,8 @@
 </head>
 <body>
 <c:set var="root" value="<%=request.getContextPath()%>"/>
+
+<h1>${session}</h1>
 <div class="main-img">
    <img src="${root}/food/1.jpg" alt="" width="300">
    <img src="${root}/food/2.jpg" alt="" width="300">
