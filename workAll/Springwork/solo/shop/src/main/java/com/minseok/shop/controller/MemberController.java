@@ -26,6 +26,7 @@ public class MemberController {
     }
 
 
+
     @GetMapping("/logout")
     String logout() {
         return "redirect:/"; // 홈 페이지로 리다이렉트
