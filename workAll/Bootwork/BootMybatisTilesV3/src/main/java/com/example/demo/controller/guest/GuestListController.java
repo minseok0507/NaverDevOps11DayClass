@@ -26,7 +26,7 @@ public class GuestListController {
         // 에디터 내용을 데이터베이스 또는 파일에 저장하는 로직 구현
 //        System.out.println(content);
 //        contentService.saveContent(content);
-        System.out.println(content.toString());
+        System.out.println(content);
         return ResponseEntity.ok().build();
     }
 
