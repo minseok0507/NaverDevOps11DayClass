@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: minseok
@@ -27,7 +28,7 @@
 <body>
 <!-- HTML -->
 <div>
-    <form id="contentForm" method="post" action="/save-content">
+    <form id="contentForm" method="post" action="<c:url value="/save-content"/>">
         <div id="editor"></div>
         <textarea name="content" style="display: none;"></textarea>
         <button type="button">Save</button>

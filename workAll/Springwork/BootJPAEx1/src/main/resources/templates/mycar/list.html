@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+</style>
+<body>
+<h1>LIST <a href="/mycar/form">form</a></h1>
+<div class="card" th:each="i : ${mycarDtoList}" style="border:1px solid black; width: 300px; height: 300px; text-align: center; padding: 10px;">
+    <img th:src="@{https://nbpceeho3704.edge.naverncp.com/Jqjb53UoUD/ex1/{photo}?type=f&w=40&h=40(photo=${i.getPhoto})}" alt="" width="100">
+    <p>
+        차이름 : <span th:text="${i.getName()}"></span>
+    </p>
+    <p>
+        차가격 : <span th:text="${i.getPrice()}"></span>
+    </p>
+    <p>
+        구입일 : <span th:text="${i.getBuy()}"></span>
+    </p>
+    <p>
+        색 상 : <span th:style="'border: 1px solid black; background-color: ' + ${i.getColor()}"
+                    th:text="${i.getColor()}"></span>
+    </p>
+
+</div>
+</body>
+</html>

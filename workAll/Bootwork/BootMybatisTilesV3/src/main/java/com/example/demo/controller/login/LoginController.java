@@ -13,7 +13,12 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
-public class LoginController {
+public class
+
+
+
+
+LoginController {
     private final MemberService memberService;
 
     @GetMapping("/login")

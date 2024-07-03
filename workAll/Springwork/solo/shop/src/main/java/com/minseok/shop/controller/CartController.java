@@ -37,6 +37,7 @@ public class CartController {
     //장바구니 추가
     @PostMapping("/detailCart")
     String detailAddCart(Long itemId, Integer quantity, Authentication auth) {
+        System.out.println("itemId: " + itemId + ", quantity: " + quantity + ", auth: " + auth);
         Member user = memberRepository.findByUsername(auth.getName()).orElseThrow(() -> new RuntimeException("User not found"));
         Item item = itemRepository.findById(itemId).orElseThrow(() -> new RuntimeException("Item not found"));
 
