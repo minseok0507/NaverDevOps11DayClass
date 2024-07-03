@@ -26,7 +26,7 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
     private final CartItemRepository cartItemRepository;
-    private final S3Service s3Service;
+//    private final S3Service s3Service;
 
 
     // 아이템 리스트 조회
@@ -168,15 +168,15 @@ public class ItemController {
     }
 
 
-
-    //aws s3저장
-    @GetMapping("/presigned-url")
-    @ResponseBody
-    String getURL(@RequestParam String filename) {
-        String result = s3Service.createPreSignedUrl("test/" + filename);
-        System.out.println(result);
-        return result;
-    }
+//
+//    //aws s3저장
+//    @GetMapping("/presigned-url")
+//    @ResponseBody
+//    String getURL(@RequestParam String filename) {
+//        String result = s3Service.createPreSignedUrl("test/" + filename);
+//        System.out.println(result);
+//        return result;
+//    }
 
 
 
