@@ -5,27 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1dacee3-b994-49a5-b096-a737a0571e45" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/java/com/example/classjsp/data/dao/MemoDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/java/com/example/classjsp/data/dto/MemoDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/WEB-INF/lib/cos.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentActionDelete.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentActionInsert.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentActionUpdate.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentDetail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentEdit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentForm.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0502/memoAction.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0502/memoDetail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0502/memoForm.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0502/memoList.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/personalProject/main.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/java/com/example/classjsp/data/dao/StudentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/java/com/example/classjsp/data/dao/StudentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/java/com/example/classjsp/data/dto/StudentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/java/com/example/classjsp/data/dto/StudentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0430/sawonActionUpdate.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0430/sawonActionUpdate.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/workAll/JAVAwork/jsp/classJSP/src/main/webapp/day0501/studentList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/workAll/Springwork/solo/shop/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/workAll/Springwork/solo/shop/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/BootJpaEx1Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/cloud/NaverConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/cloud/NcpObjectStorageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/cloud/ObjectStorageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/controller/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/controller/MycarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/data/MycarDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/java/org/example/bootjpaex1/repository/MyCarRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/resources/naver.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/resources/templates/mycar/form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/main/resources/templates/mycar/list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/workAll/Springwork/BootJPAEx1/src/test/java/org/example/bootjpaex1/BootJpaEx1ApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,22 +63,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/minseok/Documents/GitHub/naver0314devops11&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "min",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/minseok/Documents/GitHub/naver0314devops11",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -100,6 +98,7 @@
       <workItem from="1714005157138" duration="4107000" />
       <workItem from="1714615618706" duration="26000" />
       <workItem from="1714615649714" duration="13000" />
+      <workItem from="1720017501899" duration="18000" />
     </task>
     <servers />
   </component>
