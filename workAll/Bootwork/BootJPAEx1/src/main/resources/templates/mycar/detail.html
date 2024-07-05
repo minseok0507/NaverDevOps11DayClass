@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+</head>
+<body>
+<h1>마이카 상세</h1>
+<a th:href="@{/mycar/update(id=${mycarDto.id})}">수정</a>
+<h3>자동차명 : [[${mycarDto.name}]]</h3>
+<div th:object="${mycarDto}">
+    <img th:src="@{ 'https://kr.object.ncloudstorage.com/bit-study/ex1/' + *{photo} }" alt="">
+    <h4>가격 : [[*{price}]]만원</h4>
+    <h4>색상 : <span th:style="'border: 1px solid black; background-color: ' + ${mycarDto.getColor()}"
+                   th:text="${mycarDto.getColor()}"></span></h4>
+    <h4>구입일 : [[*{buy}]]</h4>
+    <h4>등록날짜 : <span th:text="${#calendars.format(mycarDto.createAt, 'yyyy-MM-dd HH:mm')}"></span></h4>
+</div>
+
+<div>댓글
+    <input type="hidden" name="myCarId" id="myCarId" th:value="${mycarDto.id}">
+    <input type="text" name="comment" id="comment">
+    <button onclick="addComment()">작성</button>
+</div>
+<div id="comment-area">
+
+</div>
+
+
+<script>
+    commentDisplay();
+
+
+    function addComment() {
+        const myCarId = document.getElementById("myCarId").value;
+        const commentText = document.getElementById("comment").value;
+
+        fetch("/addcomment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+                mycarId: myCarId,
+                comment: commentText,
+            }),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    // 댓글 작성 성공 시 처리
+                    console.log("댓글 작성 성공");
+                    // 추가적인 처리 로직 작성
+                    document.getElementById("comment").value = "";
+                    commentDisplay();
+                } else {
+                    // 댓글 작성 실패 시 처리
+                    console.error("댓글 작성 실패");
+                    // 오류 처리 로직 작성
+                }
+            })
+            .catch((error) => {
+                // 네트워크 오류 등 예외 처리
+                console.error("댓글 작성 중 오류 발생:", error);
+            });
+    }
+
+
+    function commentDisplay() {
+        const commentArea = document.getElementById("comment-area");
+        commentArea.innerHTML = "";
+        const myCarId = document.getElementById("myCarId").value;
+
+        fetch("/comment?mycarId=" + myCarId, {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // data는 서버에서 반환된 JSON 데이터
+                console.log(data);
+
+                let s = ""
+                // 데이터 처리 로직 작성
+                data.forEach((comment) => {
+                    s += `
+<div id="comment-${comment.id}" style="vertical-align: middle;">
+<span>${comment.id}</span>
+<span>${comment.comment}</span>
+<span>${comment.createdAt}</span>
+<span class="material-symbols-outlined" style="color: red; font-weight: bolder" onclick="commentDelete(${comment.id})">
+delete
+</span>
+</div>
+                    `
+                })
+                commentArea.innerHTML = s;
+            })
+            .catch((error) => {
+                console.error("댓글 로드 실패:", error);
+            })
+            .finally(() => {
+
+            })
+
+
+    }
+
+
+    function commentDelete(id) {
+        if (confirm("삭제하시겠습니까?")) {
+            fetch("/comment", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    id: id
+                }),
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        document.getElementById("comment-"+id).remove();
+                    }
+                })
+                .catch((error) => {
+                    console.error("댓글 삭제 실패:", error);
+                })
+        }
+    }
+
+</script>
+</body>
+</html>
