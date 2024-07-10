@@ -109,6 +109,7 @@ delete
 
     function commentDelete(id) {
         if (confirm("삭제하시겠습니까?")) {
+
             fetch("/comment", {
                 method: "DELETE",
                 headers: {

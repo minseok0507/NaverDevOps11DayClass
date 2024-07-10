@@ -53,7 +53,8 @@ public class MycarController {
         System.out.println("pageable: " + pageable);
 
         Page<MycarDto> result = myCarRepository.findAll(pageable);
-        System.out.println("result: " + result);
+        var comment = myCarRepository.findAllWithComments();
+        System.out.println(comment);
 
         model.addAttribute("mycarDtoList", result);
         return "mycar/list";

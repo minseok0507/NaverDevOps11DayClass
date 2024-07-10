@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface MyCarRepository extends JpaRepository<MycarDto, Long> {
     @Modifying
     @Transactional
@@ -31,5 +33,17 @@ public interface MyCarRepository extends JpaRepository<MycarDto, Long> {
         WHERE id = :#{#dto.id}
         """, nativeQuery = true)
     public void updateMycarNoPhoto(@Param("dto") MycarDto dto);
+
+
+    @Query(value = """
+            SELECT mycar.*, COUNT(c.id) AS commentCount
+            FROM mycar
+            LEFT JOIN bitcamp.comment c ON mycar.id = c.mycar_id
+            GROUP BY mycar.id;
+            """,nativeQuery = true)
+    public List<MycarDto> findAllWithComments();
+
+
+
 
 }

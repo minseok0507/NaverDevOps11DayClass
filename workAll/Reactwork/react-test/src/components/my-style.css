@@ -1,0 +1,9 @@
+.photo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 20px;
+    background: red;
+    /*border: 5px  #000;*/
+}
+
