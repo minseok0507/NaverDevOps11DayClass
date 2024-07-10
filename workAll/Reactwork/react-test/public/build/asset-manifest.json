@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/NaverDevOps11DayClass/static/css/main.d5289b2f.css",
+    "main.js": "/NaverDevOps11DayClass/static/js/main.c8248a96.js",
+    "index.html": "/NaverDevOps11DayClass/index.html",
+    "main.d5289b2f.css.map": "/NaverDevOps11DayClass/static/css/main.d5289b2f.css.map",
+    "main.c8248a96.js.map": "/NaverDevOps11DayClass/static/js/main.c8248a96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d5289b2f.css",
+    "static/js/main.c8248a96.js"
+  ]
+}
